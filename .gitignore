@@ -1,0 +1,6 @@
+﻿dist/
+obj/
+bin/
+*.err
+# session notes, machine-specific
+handoff.md

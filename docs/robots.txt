@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nj-burrito.github.io/NJ-Sort/sitemap.xml
