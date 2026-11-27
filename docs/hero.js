@@ -1,5 +1,5 @@
 (function () {
-  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .15 });
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px -4% 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   var v = document.getElementById('hero'), b = document.getElementById('pause'), ar = document.documentElement.lang === 'ar';
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); b.hidden = true; return; }
