@@ -73,8 +73,11 @@ dist\NJ-Sort.exe --selftest   REM loads and lays out both windows off-screen; ex
 
 | File | Role |
 |---|---|
-| `NJ-Sort.cs` | The whole program: desktop icon access, planner, animation, sound, toast, window, tray, self-install |
-| `build.cmd` | Compiles it and embeds the icon and logo |
+| `src/App/` | Start-up and self-install, settings, shortcuts, sounds, and the core: watching the desktop, the actions, the tray icon |
+| `src/Desktop/` | Desktop icon access (the list view in Explorer) and the animation that moves the icons |
+| `src/Sorts/` | Saved sorts on disk, and the planner that decides where every icon goes |
+| `src/UI/` | The main window (its XAML apart), the toast, and the off-screen renders |
+| `build.cmd` | Compiles `src\` and embeds the icon and logo |
 | `assets/` | The logo (`.png`) and icon (`.ico`) |
 | `docs/` | The website (GitHub Pages) and the README images, which `NJ-Sort.exe --render docs` draws from sample data |
 
