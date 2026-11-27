@@ -4,6 +4,8 @@
 
 <p align="center">Keeps your Windows desktop icons in the sort you saved, even after File Explorer restarts.</p>
 
+<p align="center"><a href="https://nj-burrito.github.io/NJ-Sort/"><img src="docs/hero.gif" width="420" alt="A demo desktop: File Explorer restarts, the icons scatter, then NJ-Sort glides them back into the saved sort"></a></p>
+
 <p align="center"><img src="docs/window.png" width="760" alt="The NJ-Sort window: Save sort now, Rearrange and Undo buttons, the sort history with the active sort marked, the shortcuts, and the behaviour switches"></p>
 
 Windows forgets where your desktop icons were. After an update, a crash, a screen change or a tool that restarts File Explorer, they come back in the wrong places. NJ-Sort saves your arrangement and puts it back.
@@ -48,7 +50,7 @@ To change a shortcut, click its box and press the new keys; Backspace removes it
 ## How it stays out of trouble
 
 - **A saved sort is never changed by the program.** Only you save, rename or delete one.
-- **File Explorer restarts are waited out.** Tools such as [NJ-Flush](https://github.com/NJ-Burrito/NJ-Flush) restart Explorer, and the desktop empties for a moment. NJ-Sort sees this from the desktop window disappearing, the taskbar being recreated, or most items vanishing at once. It then waits until the item count has been steady for about three seconds and puts the sort back. Four seconds later it checks once more, in case Explorer re-applied its own positions.
+- **File Explorer restarts are waited out.** Tools such as [NJ-Flush](https://nj-burrito.github.io/NJ-Flush/) restart Explorer, and the desktop empties for a moment. NJ-Sort sees this from the desktop window disappearing, the taskbar being recreated, or most items vanishing at once. It then waits until the item count has been steady for about three seconds and puts the sort back. Four seconds later it checks once more, in case Explorer re-applied its own positions.
 - **Only the desktop is touched.** NJ-Sort moves items in the desktop's own icon view, and nothing else.
 - **Align to grid is respected.** If an icon pushes a neighbour aside while it glides, the neighbour is put back at the end.
 - **Auto arrange.** When Windows' Auto arrange icons is on, Windows decides the positions. NJ-Sort tells you to turn it off and moves nothing.
@@ -81,3 +83,7 @@ C# 5 on .NET Framework 4. WPF draws the window and the toast, and WinForms the t
 ## Licence
 
 MIT, see [LICENSE](LICENSE). Made by Nader Alzghoul (NJ-Burrito).
+
+## More by NJ-Burrito
+
+[Portfolio](https://nj-burrito.github.io/) · [QA-Wrap](https://nj-burrito.github.io/QA-Wrap/) · [Business-Wrap](https://nj-burrito.github.io/Business-Wrap/) · [NJ-Kit](https://nj-burrito.github.io/NJ-Kit/) · [NJ-Whip](https://nj-burrito.github.io/NJ-Whip/) · [Profile-Wrap](https://nj-burrito.github.io/Profile-Wrap/) · [Story-Wrap](https://nj-burrito.github.io/story-wrap/) · [NJ-Flush](https://nj-burrito.github.io/NJ-Flush/) · [NJ-Sort](https://nj-burrito.github.io/NJ-Sort/)

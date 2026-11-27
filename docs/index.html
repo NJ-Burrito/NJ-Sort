@@ -4,22 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NJ-Sort: keep your Windows desktop icons where you put them</title>
-<meta name="description" content="NJ-Sort is a free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts, sign-in and screen changes.">
+<meta name="description" content="Free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts.">
 <meta name="author" content="Nader Alzghoul (NJ-Burrito)">
 <link rel="canonical" href="https://nj-burrito.github.io/NJ-Sort/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NJ-Burrito">
 <meta property="og:title" content="NJ-Sort: keep your Windows desktop icons where you put them">
-<meta property="og:description" content="NJ-Sort is a free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts, sign-in and screen changes.">
+<meta property="og:description" content="Free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts.">
 <meta property="og:url" content="https://nj-burrito.github.io/NJ-Sort/">
-<meta property="og:image" content="https://nj-burrito.github.io/NJ-Sort/logo-1024.png">
-<meta property="og:image:alt" content="NJ-Sort logo">
+<meta property="og:image" content="https://nj-burrito.github.io/NJ-Sort/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NJ-Sort: your icons, where you put them. A demo desktop with its icons back in their saved places.">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_JO">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NJ-Sort: keep your Windows desktop icons where you put them">
-<meta name="twitter:description" content="NJ-Sort is a free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts, sign-in and screen changes.">
-<meta name="twitter:image" content="https://nj-burrito.github.io/NJ-Sort/logo-1024.png">
+<meta name="twitter:description" content="Free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts.">
+<meta name="twitter:image" content="https://nj-burrito.github.io/NJ-Sort/og-card.jpg">
+<meta name="twitter:image:alt" content="NJ-Sort: your icons, where you put them. A demo desktop with its icons back in their saved places.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0e1027">
+<script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -29,13 +35,16 @@
    "@id": "https://nj-burrito.github.io/NJ-Sort/#app",
    "name": "NJ-Sort",
    "alternateName": ["NJ Sort", "nj-sort", "nj_sort", "NJ_Sort", "NJSort", "نج سورت"],
-   "description": "NJ-Sort is a free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts, sign-in and screen changes.",
+   "description": "Free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts.",
    "url": "https://nj-burrito.github.io/NJ-Sort/",
    "downloadUrl": "https://github.com/NJ-Burrito/NJ-Sort/releases/latest",
    "codeRepository": "https://github.com/NJ-Burrito/NJ-Sort",
    "applicationCategory": "UtilitiesApplication",
    "operatingSystem": "Windows 10, Windows 11",
    "image": "https://nj-burrito.github.io/NJ-Sort/logo-1024.png",
+   "screenshot": "https://nj-burrito.github.io/NJ-Sort/window.png",
+   "isAccessibleForFree": true,
+   "featureList": ["Saves desktop icon positions as a sort", "Puts icons back after File Explorer restarts, sign-in and screen changes", "Sort history with undo", "New items sorted by name after the saved ones", "Changeable keyboard shortcuts"],
    "license": "https://opensource.org/licenses/MIT",
    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
    "author": { "@id": "https://nj-burrito.github.io/#person" },
@@ -56,15 +65,27 @@
     "https://nj-burrito.github.io/NJ-Kit/",
     "https://nj-burrito.github.io/NJ-Whip/",
     "https://nj-burrito.github.io/Profile-Wrap/",
+    "https://nj-burrito.github.io/story-wrap/",
     "https://github.com/NJ-Burrito/Story-Wrap",
     "https://nj-burrito.github.io/NJ-Flush/",
-    "https://nj-burrito.github.io/NJ-Sort/"
+    "https://nj-burrito.github.io/NJ-Sort/",
+    "https://nj-burrito.github.io/"
    ]
+  },
+  {
+   "@type": "VideoObject",
+   "name": "NJ-Sort demo: icons scatter after File Explorer restarts, then glide back",
+   "description": "A demo desktop with generic icon names. File Explorer restarts, the icons scatter, and NJ-Sort glides them back into the saved sort.",
+   "thumbnailUrl": "https://nj-burrito.github.io/NJ-Sort/hero-poster.jpg",
+   "contentUrl": "https://nj-burrito.github.io/NJ-Sort/hero.mp4",
+   "uploadDate": "2026-11-27"
   }
  ]
 }
 </script>
-<link rel="icon" href="logo.png">
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="apple-touch-icon" href="logo-1024.png">
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
   /* Design read: landing for Windows users, dark indigo from the app's own logo, amber for the one moving thing.
@@ -72,14 +93,18 @@
   :root {
     --bg: #0e1027; --bg-2: #171a3b; --line: #262a5a; --text: #eceeff; --muted: #a3a8d4;
     --accent: #ffb02e; --accent-ink: #181a3a; --tile: #eceeff; --desk: #1d2150;
-    --r: 14px; --ease: cubic-bezier(.16, 1, .3, 1);
+    --r: 14px; --ease: cubic-bezier(.16, 1, .3, 1); --shadow: 0 40px 80px -30px rgba(0, 0, 0, .6);
   }
   @media (prefers-color-scheme: light) {
-    :root { --bg: #f5f5fc; --bg-2: #ffffff; --line: #dedff0; --text: #14163a; --muted: #4f5380; --accent: #b86e00; --accent-ink: #ffffff; }
+    :root { --bg: #f5f5fc; --bg-2: #ffffff; --line: #dedff0; --text: #14163a; --muted: #4f5380; --accent: #8a5200; --accent-ink: #ffffff; --shadow: 0 30px 60px -34px rgba(24, 26, 80, .35); }
   }
   * { box-sizing: border-box; margin: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font: 16px/1.6 "Thmanyah Sans", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip { position: absolute; left: 16px; top: -60px; background: var(--accent); color: var(--accent-ink); padding: 10px 16px; border-radius: 10px; font-weight: 600; z-index: 10; text-decoration: none; }
+  .skip:focus { top: 12px; }
+  h1, h2, h3 { text-wrap: balance; } p { text-wrap: pretty; }
   a { color: inherit; }
   .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
@@ -87,31 +112,41 @@
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
   .brand img { width: 32px; height: 32px; }
   .nav-links { display: flex; gap: 22px; align-items: center; font-size: 15px; color: var(--muted); }
-  .nav-links a { text-decoration: none; transition: color .2s; }
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a { text-decoration: none; transition: color .15s; padding: 12px 0; }
+  @media (hover: hover) { .nav-links a:hover { color: var(--text); } }
+  .nav-links a.btn { padding: 12px 20px; color: #181a3a; }
 
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 600; text-decoration: none;
-         white-space: nowrap; transition: transform .2s var(--ease), background-color .2s; }
-  .btn:active { transform: scale(.97); }
+         white-space: nowrap; transition: transform .2s var(--ease), background-color .2s; min-height: 44px; }
+  .btn:active { transform: scale(.96); }
   .btn-primary { background: #ffb02e; color: #181a3a; }
-  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary { box-shadow: 0 8px 20px -8px rgba(255, 176, 46, .55); }
+  @media (hover: hover) { .btn-primary:hover { transform: translateY(-1px); } }
   .btn-ghost { border: 1px solid var(--line); }
-  .btn-ghost:hover { background: var(--bg-2); }
+  @media (hover: hover) { .btn-ghost:hover { background: var(--bg-2); } }
   .btn i { font-size: 18px; }
 
-  .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; padding: 48px 0 72px; min-height: calc(100dvh - 68px); }
+  .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; padding: 48px 0 72px; min-height: min(760px, calc(100dvh - 68px)); }
   h1 { font-size: clamp(40px, 5.2vw, 62px); line-height: 1.04; letter-spacing: -.035em; font-weight: 800; }
   h1 em { font-style: normal; color: var(--accent); }
   h1 .kicker { display: block; font-size: .32em; letter-spacing: .02em; color: var(--accent); margin-bottom: 10px; }
   .lede { color: var(--muted); font-size: 19px; max-width: 36ch; margin: 22px 0 32px; }
   .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; color: var(--muted); font-size: 14px; list-style: none; padding: 0; }
+  .facts li { display: flex; align-items: center; gap: 6px; } .facts i { color: var(--accent); font-size: 16px; }
 
   /* the demo desktop: real positions, real glide (same easing and stagger as the app) */
   .desk { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden;
           background: radial-gradient(120% 90% at 85% 10%, #3a2d86 0, transparent 55%), linear-gradient(160deg, #23285e, #141737);
-          box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+          box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+  .desk noscript video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pause { position: absolute; right: 10px; bottom: 8px; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; z-index: 2; background: rgba(10, 12, 30, .6); color: #eceeff; font-size: 18px; display: grid; place-items: center; transition: background-color .15s, transform .2s var(--ease); }
+  .pause:active { transform: scale(.96); }
+  @media (hover: hover) { .pause:hover { background: rgba(10, 12, 30, .85); } }
+  .pause .ph-play { display: none; } .pause[aria-pressed="true"] .ph-pause { display: none; } .pause[aria-pressed="true"] .ph-play { display: block; }
+  .pause[hidden] { display: none; }
   .icon { position: absolute; left: 0; top: 0; width: 15%; display: flex; flex-direction: column; align-items: center; gap: 6px;
-          transition: transform .46s cubic-bezier(.33, 1, .68, 1); will-change: transform; }
+          transition: transform .46s cubic-bezier(.33, 1, .68, 1) /* motion-ok: the glide mirrors the app's own animation */; will-change: transform; }
   .icon .glyph { width: 52%; aspect-ratio: 1; border-radius: 22%; background: var(--c, #eceeff); display: grid; place-items: center;
                  color: #1d2150; font-size: clamp(14px, 2.2vw, 24px); box-shadow: 0 6px 14px rgba(0,0,0,.3); }
   .icon span { font-size: clamp(9px, 1.15vw, 12.5px); color: #eceeff; text-shadow: 0 1px 3px rgba(0,0,0,.8); text-align: center; line-height: 1.2; max-width: 100%; }
@@ -119,7 +154,7 @@
   .taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 7%; background: rgba(10, 12, 30, .75); backdrop-filter: blur(8px); }
   .flash { position: absolute; inset: 0; background: #070816; opacity: 0; transition: opacity .25s; pointer-events: none; }
   .note { position: absolute; top: 4%; left: 50%; transform: translateX(-50%); font-size: 13px; color: #c9ccf0; background: rgba(10,12,30,.7);
-          padding: 5px 12px; border-radius: 999px; opacity: 0; transition: opacity .3s; white-space: nowrap; }
+          padding: 5px 12px; border-radius: 999px; opacity: 0; transition: opacity .25s; white-space: nowrap; }
   .toast { position: absolute; left: 50%; bottom: 10%; transform: translate(-50%, 16px) scale(.92); opacity: 0;
            display: flex; gap: 12px; align-items: center; padding: 10px 18px 10px 10px; border-radius: 14px; background: rgba(22, 24, 56, .96);
            border: 1px solid rgba(255, 176, 46, .3); box-shadow: 0 16px 30px rgba(0,0,0,.5); white-space: nowrap;
@@ -128,12 +163,12 @@
   .toast .disc { width: 34px; height: 34px; border-radius: 50%; background: #ffb02e; display: grid; place-items: center; color: #161838; font-size: 19px; }
   .toast b { display: block; font-size: 14px; color: #eceeff; } .toast small { font-size: 12px; color: #a3a8d4; }
 
-  section { padding: 96px 0; }
+  section { padding: 104px 0; }
   h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -.025em; font-weight: 800; max-width: 22ch; }
   .sub { color: var(--muted); max-width: 62ch; margin-top: 14px; font-size: 18px; }
 
-  .shot { margin-top: 48px; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6), 0 0 0 1px var(--line); }
-  .shot img { width: 100%; display: block; }
+  .shot { margin-top: 48px; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px var(--line); }
+  .shot img { width: 100%; height: auto; display: block; }
 
   .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 48px; }
   .cell { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; display: flex; flex-direction: column; gap: 10px; min-height: 190px; }
@@ -153,16 +188,21 @@
   .step h3 { font-size: 20px; display: flex; gap: 10px; align-items: center; }
   .step h3 i { color: var(--accent); }
   .step p { color: var(--muted); margin-top: 8px; }
+  code { font: 600 .9em ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--bg-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
   .fine { margin-top: 40px; color: var(--muted); font-size: 15px; max-width: 72ch; }
 
   footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   footer .seo { flex-basis: 100%; display: grid; gap: 8px; }
+  footer h2 { font-size: 14px; letter-spacing: 0; font-weight: 700; color: var(--text); max-width: none; }
+  footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0 20px; }
+  footer li a, footer [aria-current] { display: inline-block; padding: 10px 0; }
+  footer [aria-current] { color: var(--text); font-weight: 600; }
 
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-  .reveal.in { opacity: 1; transform: none; }
+  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
+  .js .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; }
     .icon, .toast { transition: none; }
   }
   @media (max-width: 860px) {
@@ -171,19 +211,20 @@
     body { overflow-x: hidden; }
     .wrap { padding-left: 16px; padding-right: 16px; }
     section { padding-top: 64px; padding-bottom: 64px; }
-    nav .btn { padding: 9px 14px; }
+    nav .btn { padding: 12px 16px; }
     .bento { grid-template-columns: 1fr; }
     .c-a, .c-b, .c-c, .c-d, .c-e, .c-f { grid-column: auto; }
     .keys { grid-template-columns: 1fr 1fr; }
-    .steps { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; } .step { padding-right: 0; }
     .nav-links a:not(.btn) { display: none; }
   }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="wrap">
-  <nav>
-    <a class="brand" href="#"><img src="logo.png" alt="NJ-Sort logo">NJ-Sort</a>
+  <nav aria-label="Main">
+    <a class="brand" href="#" aria-label="NJ-Sort, back to top"><img src="logo.png" alt="" width="32" height="32">NJ-Sort</a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
@@ -193,18 +234,21 @@
   </nav>
 </header>
 
-<main>
-  <section class="wrap hero" style="padding-top:40px">
+<main id="main">
+  <section class="wrap hero" aria-labelledby="top-h">
     <div>
-      <h1><span class="kicker">NJ-Sort, for the Windows desktop</span>Your icons, <em>where you put them.</em></h1>
+      <h1 id="top-h"><span class="kicker">NJ-Sort, for the Windows desktop</span>Your icons, <em>where you put them.</em></h1>
       <p class="lede">Save the way your desktop is arranged. When Windows scatters it, NJ-Sort glides every icon back.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><i class="ph ph-download-simple"></i>Download</a>
         <a class="btn btn-ghost" href="https://github.com/NJ-Burrito/NJ-Sort"><i class="ph ph-github-logo"></i>Source</a>
       </div>
+      <ul class="facts"><li><i class="ph ph-currency-circle-dollar"></i>Free</li><li><i class="ph ph-scales"></i>MIT licence</li><li><i class="ph ph-file"></i>One file, about 200 KB</li><li><i class="ph ph-windows-logo"></i>Windows 10 and 11</li></ul>
     </div>
     <div class="desk" id="desk" role="img" aria-label="A demo desktop: File Explorer restarts and the icons scatter, then NJ-Sort glides them back into the saved sort, and two new files line up after them by name">
       <div class="taskbar"></div>
+      <noscript><video src="hero.mp4" poster="hero-poster.jpg" autoplay loop muted playsinline width="720" height="540"></video></noscript>
+      <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="Pause the demo"><i class="ph ph-pause"></i><i class="ph ph-play"></i></button>
       <div class="flash" id="flash"></div>
       <div class="note" id="note">File Explorer restarted</div>
       <div class="toast" id="toast"><div class="disc"><i class="ph ph-list-bullets"></i></div><div><b>Icons put back</b><small id="toast-sub">10 in their saved place, 2 more sorted by name</small></div></div>
@@ -259,14 +303,25 @@
     <span>Works well with <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>.</span>
     <div class="seo">
       <span>Also known as NJ Sort, nj-sort, nj_sort. Made by Nader Alzghoul (نادر الزغول), GitHub <a href="https://github.com/NJ-Burrito">NJ-Burrito</a>.</span>
-      <span>More by NJ-Burrito: <a href="https://nj-burrito.github.io/">Nader Alzghoul's portfolio</a> · <a href="https://nj-burrito.github.io/QA-Wrap/">QA-Wrap</a> · <a href="https://nj-burrito.github.io/Business-Wrap/">Business-Wrap</a> · <a href="https://nj-burrito.github.io/NJ-Kit/">NJ-Kit</a> · <a href="https://nj-burrito.github.io/NJ-Whip/">NJ-Whip</a> · <a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a> · <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a> · <a href="https://github.com/NJ-Burrito/Story-Wrap">Story-Wrap (repo)</a></span>
+      <h2>More by NJ-Burrito</h2>
+      <ul>
+        <li><a href="https://nj-burrito.github.io/">Portfolio</a></li>
+        <li><a href="https://nj-burrito.github.io/QA-Wrap/">QA-Wrap</a></li>
+        <li><a href="https://nj-burrito.github.io/Business-Wrap/">Business-Wrap</a></li>
+        <li><a href="https://nj-burrito.github.io/NJ-Kit/">NJ-Kit</a></li>
+        <li><a href="https://nj-burrito.github.io/NJ-Whip/">NJ-Whip</a></li>
+        <li><a href="https://nj-burrito.github.io/Profile-Wrap/">Profile-Wrap</a></li>
+        <li><a href="https://nj-burrito.github.io/story-wrap/">Story-Wrap</a> (<a href="https://github.com/NJ-Burrito/Story-Wrap">repo</a>)</li>
+        <li><a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a></li>
+        <li><span aria-current="page">NJ-Sort</span></li>
+      </ul>
       <p lang="ar" dir="rtl">NJ-Sort أداة مجانية مفتوحة المصدر لويندوز تحفظ ترتيب أيقونات سطح المكتب وتعيدها إلى أماكنها بعد إعادة تشغيل مستكشف الملفات، من تطوير نادر الزغول (NJ-Burrito)، مهندس أتمتة اختبارات الجودة في عمّان، الأردن.</p>
     </div>
   </div>
 </footer>
 
 <script>
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .2 });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   // The demo: a saved sort (col,row on a 6x4 grid), two new items that follow it by name, then Explorer scatters everything.
@@ -289,7 +344,10 @@
   const place = (it, x, y) => { it.el.style.transform = `translate(${x * desk.clientWidth / 100}px, ${y * desk.clientHeight / 100}px)`; };
   const home = it => place(it, it.c * cw + 1, it.r * ch + 2);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const wait = ms => new Promise(r => setTimeout(r, ms));
+  let paused = false;
+  const wait = async ms => { await new Promise(r => setTimeout(r, ms)); while (paused) await new Promise(r => setTimeout(r, 120)); };
+  const pauseBtn = document.getElementById('pause');
+  pauseBtn.addEventListener('click', () => { paused = !paused; pauseBtn.setAttribute('aria-pressed', paused); pauseBtn.setAttribute('aria-label', paused ? 'Play the demo' : 'Pause the demo'); });
   function scatter() { items.forEach(it => { it.el.style.transitionDelay = '0ms'; place(it, Math.random() * 84, Math.random() * 74); }); }
   function sortBack() {   // cascade in reading order of the destination: column by column, top to bottom (as the app does)
     items.slice().sort((a, b) => a.c - b.c || a.r - b.r).forEach((it, k) => { it.el.style.transitionDelay = (reduce ? 0 : k * 16) + 'ms'; home(it); });
@@ -297,7 +355,7 @@
   async function loop() {
     items.forEach(it => { it.el.style.transition = 'none'; home(it); }); void desk.offsetWidth; items.forEach(it => it.el.style.transition = '');
     for (;;) {
-      await wait(1800);
+      await wait(1400);
       note.style.opacity = 1; flash.style.opacity = .85; await wait(300);
       items.forEach(it => it.el.style.transition = 'none'); scatter(); void desk.offsetWidth; items.forEach(it => it.el.style.transition = '');
       flash.style.opacity = 0; await wait(1500); note.style.opacity = 0;
@@ -306,7 +364,7 @@
     }
   }
   addEventListener('resize', () => items.forEach(home));
-  loop();
+  if (reduce) { pauseBtn.hidden = true; items.forEach(home); toast.classList.add('in'); } else loop();
 </script>
 </body>
 </html>
