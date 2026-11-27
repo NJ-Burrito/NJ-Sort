@@ -6,4 +6,4 @@ if not exist dist mkdir dist
 "%FW%\csc.exe" /nologo /target:winexe /optimize+ /win32icon:assets\nj-sort.ico /resource:assets\nj-sort.png,nj-sort.png ^
   /r:System.Windows.Forms.dll /r:System.Drawing.dll /r:Microsoft.VisualBasic.dll /r:System.Xaml.dll ^
   /r:"%FW%\WPF\PresentationFramework.dll" /r:"%FW%\WPF\PresentationCore.dll" /r:"%FW%\WPF\WindowsBase.dll" ^
-  /out:dist\NJ-Sort.exe NJ-Sort.cs
+  /out:dist\NJ-Sort.exe /recurse:src\*.cs
