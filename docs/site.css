@@ -54,6 +54,11 @@ h1 em { font-style: normal; color: #ffb02e; }
 @media (hover: hover) { .pause:hover { background: rgba(10, 12, 30, .85); } }
 .pause .i-play { display: none; } .pause[aria-pressed="true"] .i-pause { display: none; } .pause[aria-pressed="true"] .i-play { display: block; }
 .pause[hidden] { display: none; }
+.stagebox { position: relative; }
+/* hero: the video bleeds to the inline-end edge of the screen, text keeps the page grid */
+.band .hero.wrap { max-width: none; margin: 0; padding: 0; gap: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 56vw); align-items: stretch; }
+.band .hero > div:first-child { padding-block: 64px; padding-inline: max(24px, calc((100vw - 1160px) / 2 + 24px)) 40px; align-self: center; }
+.band .stage { border-radius: 0; box-shadow: none; }
 
 /* proof strip */
 .proof { background: var(--bg-2); border-block: 1px solid var(--line); }
@@ -112,12 +117,12 @@ footer [aria-current] { color: var(--text); font-weight: 600; }
   .btn, .pause { transition: none; }
 }
 @media (max-width: 860px) {
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 32px 40px; }
+  .band .hero.wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .band .hero > div:first-child { padding: 32px 16px 28px; }
   body { overflow-x: hidden; }
   .wrap { padding-inline: 16px; }
-  .band .hero.wrap { padding-inline: 0; }
-  .hero > div:first-child { padding-inline: 16px; }
   .stage { border-radius: 0; }
+  .pause { top: auto; bottom: 10px; inset-inline-end: auto; inset-inline-start: 10px; }
   .lede { font-size: 17px; margin: 16px 0 22px; }
   .proof ul { grid-template-columns: 1fr 1fr; }
   .proof li:nth-child(3) { border-inline-start: 0; }
