@@ -1,10 +1,12 @@
 <p align="center"><img src="docs/logo.png" width="120" alt="NJ-Sort logo"></p>
 
+<p align="center"><a href="https://nj-burrito.github.io/NJ-Sort/"><img src="docs/hero.gif" width="560" alt="A demo desktop: File Explorer restarts, the icons scatter, then NJ-Sort puts them back in the saved sort and shows the Alt+S shortcut that saves it"></a></p>
+
 <h1 align="center">NJ-Sort</h1>
 
 <p align="center">Keeps your Windows desktop icons in the sort you saved, even after File Explorer restarts.</p>
 
-<p align="center"><a href="https://nj-burrito.github.io/NJ-Sort/"><img src="docs/hero.gif" width="420" alt="A demo desktop: File Explorer restarts, the icons scatter, then NJ-Sort glides them back into the saved sort"></a></p>
+<p align="center"><a href="https://nj-burrito.github.io/NJ-Sort/">Website</a> · <a href="https://nj-burrito.github.io/NJ-Sort/ar/" lang="ar" dir="rtl">الموقع بالعربية</a></p>
 
 <p align="center"><img src="docs/window.png" width="760" alt="The NJ-Sort window: Save sort now, Rearrange and Undo buttons, the sort history with the active sort marked, the shortcuts, and the behaviour switches"></p>
 
