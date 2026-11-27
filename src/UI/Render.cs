@@ -22,19 +22,23 @@ static class Render {
     public static int Run(string outDir) {
         try {
             Directory.CreateDirectory(outDir);
-            Core.Cfg = new Settings();
+            Core.Cfg = new Settings(); Tx.Resolve();   // NJSORT_LANG=ar|en picks the language of the render
             var now = DateTime.Now;
             Func<string, DateTime, int, Sort> mk = (name, t, n) => { var s = new Sort { Id = t.ToString("yyyyMMdd-HHmmss"), Name = name, Saved = t };
                 for (int i = 0; i < n; i++) s.Icons.Add(new DIcon { Name = "item " + i, N = 1 }); return s; };
             Store.All = new List<Sort> {
-                mk("Work week", now.AddMinutes(-12), 24), mk("", now.Date.AddDays(-1).AddHours(18).AddMinutes(40), 22),
-                mk("Clean desktop", now.Date.AddDays(-3).AddHours(9).AddMinutes(5), 12), mk("Before the big tidy-up", now.Date.AddDays(-9).AddHours(21).AddMinutes(17), 41) };
+                mk(Tx.T("demo.name1"), now.AddMinutes(-12), 24), mk("", now.Date.AddDays(-1).AddHours(18).AddMinutes(40), 22),
+                mk(Tx.T("demo.name3"), now.Date.AddDays(-3).AddHours(9).AddMinutes(5), 12), mk(Tx.T("demo.name4"), now.Date.AddDays(-9).AddHours(21).AddMinutes(17), 41) };
             Core.Cfg.Active = Store.All[0].Id;
             var mw = new MainWin(); mw.Refresh();
             var w = mw.win; w.WindowStartupLocation = W.WindowStartupLocation.Manual; w.Left = -20000; w.ShowActivated = false; w.Show(); w.UpdateLayout();
             Save(w, Path.Combine(outDir, "window.png"));
-            Toast.RenderPose("sort", "Rearranged", "22 in their saved place, 2 more sorted by name after them."); Save(Toast.win, Path.Combine(outDir, "toast-sort.png"));
-            Toast.RenderPose("save", "Sort saved", "24 items. It is now the active sort."); Save(Toast.win, Path.Combine(outDir, "toast-save.png"));
+            Toast.RenderPose("sort", Tx.T("t.rearranged.h"), Tx.T("demo.sort.b")); Save(Toast.win, Path.Combine(outDir, "toast-sort.png"));
+            Toast.RenderPose("save", Tx.T("t.saved.h"), Tx.F("t.saved.b", Tx.Plural("item", 24))); Save(Toast.win, Path.Combine(outDir, "toast-save.png"));
+            Toast.RenderPose("undo", Tx.T("t.undo.h"), Tx.Plural("undone", 24)); Save(Toast.win, Path.Combine(outDir, "toast-undo.png"));
+            Toast.RenderPose("error", Tx.T("t.autoarr.h"), Tx.T("t.autoarr.b")); Save(Toast.win, Path.Combine(outDir, "toast-error.png"));
+            Toast.RenderPose("info", Tx.T("t.deleted.h"), Tx.F("t.deleted.b", "Work week")); Save(Toast.win, Path.Combine(outDir, "toast-info.png"));
+            mw.RenderStates(); Save(w, Path.Combine(outDir, "window-edit.png"));   // a row picked, the rename box open, a shortcut note showing
             return 0;
         } catch (Exception e) { File.WriteAllText(Path.Combine(outDir, "render.err"), e.ToString()); return 1; }
     }

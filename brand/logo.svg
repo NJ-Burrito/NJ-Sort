@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NJ-Sort logo master, 1024 x 1024. Own vector art, no third-party parts, no text.
+     Light from the top-left. Indigo tile + amber #FFB02E accent: a neat 3x3 grid of icon tiles, the last one
+     (amber) sliding into its dashed slot. Used for 40 px and larger. Regenerate: brand/make_logo.py -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A3FA6"/><stop offset="0.5" stop-color="#2A2766"/><stop offset="1" stop-color="#0E1027"/></linearGradient>
+    <radialGradient id="glow" cx="700" cy="760" r="480" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFB02E" stop-opacity="0.34"/><stop offset="0.6" stop-color="#FFB02E" stop-opacity="0.07"/><stop offset="1" stop-color="#FFB02E" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gloss" cx="240" cy="110" r="560" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.20"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/><stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.04"/><stop offset="1" stop-color="#FFB02E" stop-opacity="0.6"/></linearGradient>
+    <linearGradient id="ice" x1="0.15" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.55" stop-color="#E4E7FF"/><stop offset="1" stop-color="#A9AEE0"/></linearGradient>
+    <linearGradient id="amb" x1="0.15" y1="0" x2="0.85" y2="1"><stop offset="0" stop-color="#FFE29A"/><stop offset="0.45" stop-color="#FFB02E"/><stop offset="1" stop-color="#E07A00"/></linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB02E" stop-opacity="0.9"/><stop offset="1" stop-color="#FFB02E" stop-opacity="0"/></linearGradient>
+    <filter id="b20" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="b4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+    <clipPath id="tc"><rect x="40" y="40" width="944" height="944" rx="214"/></clipPath>
+  </defs>
+  <rect x="40" y="40" width="944" height="944" rx="214" fill="url(#tile)"/>
+  <g clip-path="url(#tc)"><rect x="40" y="40" width="944" height="944" fill="url(#glow)"/><rect x="40" y="40" width="944" height="944" fill="url(#gloss)"/></g>
+  <rect x="43" y="43" width="938" height="938" rx="211" fill="none" stroke="url(#rim)" stroke-width="6"/>
+  <rect x="178" y="192" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="178" y="178" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="188" y="186" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="179.5" y="179.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="414" y="192" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="414" y="178" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="424" y="186" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="415.5" y="179.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="650" y="192" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="650" y="178" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="660" y="186" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="651.5" y="179.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="178" y="428" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="178" y="414" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="188" y="422" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="179.5" y="415.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="414" y="428" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="414" y="414" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="424" y="422" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="415.5" y="415.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="650" y="428" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="650" y="414" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="660" y="422" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="651.5" y="415.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="178" y="664" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="178" y="650" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="188" y="658" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="179.5" y="651.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="414" y="664" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="414" y="650" width="196" height="196" rx="48" fill="url(#ice)"/>
+  <rect x="424" y="658" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="415.5" y="651.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+  <rect x="650" y="650" width="196" height="196" rx="48" fill="#FFB02E" fill-opacity="0.10" stroke="#FFC857" stroke-width="8" stroke-dasharray="28 20" stroke-linecap="round" opacity="0.95"/>
+  <rect x="842" y="694" width="100" height="16" rx="8" fill="url(#trail)"/>
+  <rect x="842" y="740" width="74" height="16" rx="8" fill="url(#trail)"/>
+  <rect x="842" y="786" width="52" height="16" rx="8" fill="url(#trail)"/>
+  <rect x="680" y="646" width="208" height="208" rx="54" fill="#FFB02E" opacity="0.55" filter="url(#b20)"/>
+  <rect x="686" y="664" width="196" height="196" rx="48" fill="#05061A" opacity="0.55" filter="url(#b20)"/>
+  <rect x="686" y="650" width="196" height="196" rx="48" fill="url(#amb)"/>
+  <rect x="696" y="658" width="176" height="82" rx="40" fill="url(#sheen)" opacity="0.55"/>
+  <rect x="687.5" y="651.5" width="193" height="193" rx="47" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="3" opacity="0.5"/>
+</svg>

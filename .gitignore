@@ -5,3 +5,6 @@ bin/
 # session notes, machine-specific
 handoff.md
 work/
+
+# raw Mixkit downloads (the mixed tracks are in assets/sfx)
+sfx/*.wav

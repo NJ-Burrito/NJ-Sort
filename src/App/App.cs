@@ -9,7 +9,8 @@
 // updates, sign-in, screen changes) is waited out until its item count is steady, then the active sort is put back.
 // Only the desktop list view is ever touched. NJ-Sort installs itself in %LOCALAPPDATA%\NJ-Sort (or the folder in the NJSORT_HOME
 // environment variable) and keeps its data there: sorts\, settings.ini, undo.tsv, nj-sort.log.
-// CLI: NJ-Sort.exe --tray (start in the hidden icons, used at sign-in) | list | --selftest | --render <folder> (README images)
+// CLI: NJ-Sort.exe --tray (start in the hidden icons, used at sign-in) | list | --selftest | --render <folder> (README images) | --strings <file>
+// Language: settings.ini language=auto|en|ar (Text/Strings.cs); NJSORT_LANG=ar|en overrides it, for off-screen renders only.
 // MIT licence, Nader Alzghoul (NJ-Burrito). https://github.com/NJ-Burrito/NJ-Sort
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,11 @@ using D = System.Drawing;
 [assembly: AssemblyCompany("NJ-Burrito")]
 [assembly: AssemblyDescription("Keeps your desktop icons in the sort you saved.")]
 [assembly: AssemblyCopyright("MIT licence, Nader Alzghoul (NJ-Burrito)")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 
 static class App {
-    public const string Version = "1.0.0";
+    public const string Version = "1.1.0";
     // where NJ-Sort lives and keeps its data: NJSORT_HOME when set, else %LOCALAPPDATA%\NJ-Sort
     public static readonly string Dir = HomeDir();
     static string HomeDir() {
@@ -77,11 +78,17 @@ static class App {
         if (a == "--selftest") {   // gate: both windows parse, bind and lay out; exit 0 or 1, nothing is moved
             try {
                 Core.Cfg = Settings.Load(); Store.Reload(); Desktop.Lv = Desktop.Find();
-                var mw = new MainWin(); mw.Refresh(); mw.LayoutTest(); Toast.SelfTest();
+                var faults = Tx.Check();   // the string table: both sides filled, placeholders match, Arabic clean, plural forms for 0..120
+                if (faults.Count > 0) { File.WriteAllText(Path.Combine(Dir, "selftest.err"), string.Join(Environment.NewLine, faults)); return 1; }
+                foreach (bool ar in new[] { false, true }) {   // both windows and both toasts lay out in both languages
+                    Tx.Ar = ar; Toast.win = null; var mw = new MainWin(); mw.Refresh(); mw.LayoutTest(); Toast.SelfTest();
+                }
                 Console.Out.Flush(); return 0;
             } catch (Exception e) { File.WriteAllText(Path.Combine(Dir, "selftest.err"), e.ToString()); return 1; }
         }
+        if (a == "--strings" && args.Length > 1) { Tx.Export(args[1]); return 0; }   // the string table as markdown (for the proofread pass)
         if (a == "--render" && args.Length > 1) return Render.Run(args[1]);
+        if (a == "--render-motion" && args.Length > 1) return RenderMotion.Run(args[1]);   // the icon animation on a fake desktop, off screen
         // A copy anywhere else (Downloads, the Desktop) installs or updates the one in the home folder, then hands over to it,
         // so only one NJ-Sort ever runs and the sign-in shortcut always points at the same file.
         string me = Assembly.GetExecutingAssembly().Location;

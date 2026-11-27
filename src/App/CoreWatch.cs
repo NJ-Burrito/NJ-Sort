@@ -94,8 +94,8 @@ static partial class Core {
     }
 
     static bool Ready(bool auto) {
-        if (!Desktop.Valid || (pending && !auto)) { Toast.Show("error", "The desktop is still loading", "Try again in a moment."); Sfx.Play("error"); return false; }
-        if (Desktop.AutoArrange) { Toast.Show("error", "Auto arrange is on", "Right-click the desktop, View, and turn off Auto arrange icons."); Sfx.Play("error"); return false; }
+        if (!Desktop.Valid || (pending && !auto)) { Toast.Show("error", Tx.T("t.loading.h"), Tx.T("t.loading.b")); Sfx.Play("error"); return false; }
+        if (Desktop.AutoArrange) { Toast.Show("error", Tx.T("t.autoarr.h"), Tx.T("t.autoarr.b")); Sfx.Play("error"); return false; }
         return true;
     }
 }
