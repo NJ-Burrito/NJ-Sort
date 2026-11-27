@@ -129,18 +129,16 @@
   .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; padding: 48px 0 72px; min-height: min(760px, calc(100dvh - 68px)); }
   h1 { font-size: clamp(40px, 5.2vw, 62px); line-height: 1.04; letter-spacing: -.035em; font-weight: 800; }
   h1 em { font-style: normal; color: var(--accent); }
-  h1 .kicker { display: block; font-size: .32em; letter-spacing: .02em; color: var(--accent); margin-bottom: 10px; }
   .lede { color: var(--muted); font-size: 19px; max-width: 36ch; margin: 22px 0 32px; }
   .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 22px; color: var(--muted); font-size: 14px; list-style: none; padding: 0; }
-  .facts li { display: flex; align-items: center; gap: 6px; } .facts i { color: var(--accent); font-size: 16px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 22px; color: var(--muted); font-size: 14px; list-style: none; padding: 0; }
 
   /* the demo desktop: real positions, real glide (same easing and stagger as the app) */
   .desk { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden;
           background: radial-gradient(120% 90% at 85% 10%, #3a2d86 0, transparent 55%), linear-gradient(160deg, #23285e, #141737);
           box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, .07); }
   .desk noscript video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .pause { position: absolute; right: 10px; bottom: 8px; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; z-index: 2; background: rgba(10, 12, 30, .6); color: #eceeff; font-size: 18px; display: grid; place-items: center; transition: background-color .15s, transform .2s var(--ease); }
+  .pause { position: absolute; right: 10px; top: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; z-index: 2; background: rgba(10, 12, 30, .6); color: #eceeff; font-size: 18px; display: grid; place-items: center; transition: background-color .15s, transform .2s var(--ease); }
   .pause:active { transform: scale(.96); }
   @media (hover: hover) { .pause:hover { background: rgba(10, 12, 30, .85); } }
   .pause .ph-play { display: none; } .pause[aria-pressed="true"] .ph-pause { display: none; } .pause[aria-pressed="true"] .ph-play { display: block; }
@@ -163,30 +161,30 @@
   .toast .disc { width: 34px; height: 34px; border-radius: 50%; background: #ffb02e; display: grid; place-items: center; color: #161838; font-size: 19px; }
   .toast b { display: block; font-size: 14px; color: #eceeff; } .toast small { font-size: 12px; color: #a3a8d4; }
 
-  section { padding: 104px 0; }
+  section { padding-block: 104px; }
+  section.wrap { padding-block: 96px; } .hero.wrap { padding-block: 48px 72px; }
   h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -.025em; font-weight: 800; max-width: 22ch; }
   .sub { color: var(--muted); max-width: 62ch; margin-top: 14px; font-size: 18px; }
 
   .shot { margin-top: 48px; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px var(--line); }
   .shot img { width: 100%; height: auto; display: block; }
 
-  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 48px; }
-  .cell { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; display: flex; flex-direction: column; gap: 10px; min-height: 190px; }
-  .cell i { font-size: 28px; color: var(--accent); }
-  .cell h3 { font-size: 19px; letter-spacing: -.01em; }
-  .cell p { color: var(--muted); font-size: 15px; }
-  .c-a { grid-column: span 4; background: linear-gradient(135deg, #2a1f6e, #4a35a3 60%, #3b2c8c); border: 0; color: #f3f1ff; }
-  .c-a p { color: #d9d4ff; } .c-a i { color: #ffc15e; }
-  .c-b, .c-c, .c-d, .c-e { grid-column: span 2; }
-  .c-f { grid-column: span 6; }
-  kbd { font: 600 13px ui-monospace, "Cascadia Mono", Consolas, monospace; padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); }
-  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
-  .keys div { font-size: 14px; color: var(--muted); } .keys div b { display: block; color: var(--text); font-size: 15px; margin-bottom: 4px; }
+  .feat { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; margin-top: 48px; align-items: start; }
+  .lead { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35; letter-spacing: -.015em; font-weight: 600; text-wrap: pretty; }
+  .lead + p { color: var(--muted); margin-top: 18px; }
+  .rows { border-top: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 8px 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .row h3 { font-size: 17px; letter-spacing: -.01em; }
+  .row p { color: var(--muted); font-size: 15.5px; }
+  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 24px; margin-top: 56px; padding: 26px 28px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); }
+  .keys > p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+  .keys b { display: block; font-size: 15px; margin-bottom: 6px; }
+  kbd { font: 600 13px/1 "Thmanyah Sans", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); border-bottom-width: 2px; background: var(--bg-2); color: var(--text); }
+  .keys kbd { background: var(--bg); }
 
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 48px; border-top: 1px solid var(--line); }
   .step { padding: 28px 28px 0 0; }
-  .step h3 { font-size: 20px; display: flex; gap: 10px; align-items: center; }
-  .step h3 i { color: var(--accent); }
+  .step h3 { font-size: 20px; }
   .step p { color: var(--muted); margin-top: 8px; }
   code { font: 600 .9em ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--bg-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
   .fine { margin-top: 40px; color: var(--muted); font-size: 15px; max-width: 72ch; }
@@ -206,15 +204,16 @@
     .icon, .toast { transition: none; }
   }
   @media (max-width: 860px) {
-    .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-top: 24px; }
+    .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
     .hero > * { min-width: 0; }
     body { overflow-x: hidden; }
     .wrap { padding-left: 16px; padding-right: 16px; }
     section { padding-top: 64px; padding-bottom: 64px; }
     nav .btn { padding: 12px 16px; }
-    .bento { grid-template-columns: 1fr; }
-    .c-a, .c-b, .c-c, .c-d, .c-e, .c-f { grid-column: auto; }
+    .feat { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .row { grid-template-columns: minmax(0, 1fr); }
     .keys { grid-template-columns: 1fr 1fr; }
+    section.wrap { padding-block: 64px; } .hero.wrap { padding-block: 24px 48px; }
     .steps { grid-template-columns: 1fr; } .step { padding-right: 0; }
     .nav-links a:not(.btn) { display: none; }
   }
@@ -237,13 +236,13 @@
 <main id="main">
   <section class="wrap hero" aria-labelledby="top-h">
     <div>
-      <h1 id="top-h"><span class="kicker">NJ-Sort, for the Windows desktop</span>Your icons, <em>where you put them.</em></h1>
+      <h1 id="top-h">Your icons, <em>where you put them.</em></h1>
       <p class="lede">Save the way your desktop is arranged. When Windows scatters it, NJ-Sort glides every icon back.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><i class="ph ph-download-simple"></i>Download</a>
         <a class="btn btn-ghost" href="https://github.com/NJ-Burrito/NJ-Sort"><i class="ph ph-github-logo"></i>Source</a>
       </div>
-      <ul class="facts"><li><i class="ph ph-currency-circle-dollar"></i>Free</li><li><i class="ph ph-scales"></i>MIT licence</li><li><i class="ph ph-file"></i>One file, about 200 KB</li><li><i class="ph ph-windows-logo"></i>Windows 10 and 11</li></ul>
+      <ul class="facts"><li>Free</li><li>MIT licence</li><li>One file, about 200 KB</li><li>Windows 10 and 11</li></ul>
     </div>
     <div class="desk" id="desk" role="img" aria-label="A demo desktop: File Explorer restarts and the icons scatter, then NJ-Sort glides them back into the saved sort, and two new files line up after them by name">
       <div class="taskbar"></div>
@@ -262,36 +261,34 @@
   </section>
 
   <section class="wrap" id="features">
-    <h2 class="reveal">Quiet, careful, out of the way.</h2>
-    <div class="bento">
-      <div class="cell c-a reveal">
-        <i class="ph ph-arrows-clockwise"></i>
-        <h3>Survives File Explorer restarts</h3>
-        <p>When Explorer restarts (after an update, a crash, or a tool like NJ-Flush), the desktop empties for a moment. NJ-Sort never mistakes that for you deleting files. It waits until the desktop is steady, puts your sort back, and checks once more a few seconds later.</p>
+    <h2 class="reveal">What it does when Windows moves things.</h2>
+    <div class="feat">
+      <div class="reveal">
+        <p class="lead">When Explorer restarts, the desktop empties for a moment. NJ-Sort never mistakes that for you deleting files.</p>
+        <p>It waits until the desktop is steady, puts your sort back, and checks once more a few seconds later. That covers an update, a crash, or a tool like NJ-Flush.</p>
       </div>
-      <div class="cell c-b reveal"><i class="ph ph-clock-counter-clockwise"></i><h3>Sort history</h3><p>Every save is kept, newest on top. Use, rename or delete any of them. Deleted sorts go to the Recycle Bin.</p></div>
-      <div class="cell c-c reveal"><i class="ph ph-sort-ascending"></i><h3>New items by name</h3><p>A new download lands after your sorted icons, in name order, folders first. It never covers one of yours.</p></div>
-      <div class="cell c-d reveal"><i class="ph ph-arrow-u-up-left"></i><h3>Undo</h3><p>Every rearrange can be undone with one key, and redone with the same key.</p></div>
-      <div class="cell c-e reveal"><i class="ph ph-sparkle"></i><h3>Glide and chime</h3><p>Icons glide into place one after another, a small toast confirms what moved, and a quiet chime plays. All of it can be turned off.</p></div>
-      <div class="cell c-f reveal">
-        <h3>Shortcuts you can change</h3>
-        <p>They work while NJ-Sort sits in the hidden icons. Click a box in the window and press new keys.</p>
-        <div class="keys">
-          <div><b>Save sort now</b><kbd>Alt</kbd> <kbd>S</kbd></div>
-          <div><b>Rearrange</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></div>
-          <div><b>Undo</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Z</kbd></div>
-          <div><b>Open NJ-Sort</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>N</kbd></div>
-        </div>
+      <div class="rows reveal">
+        <div class="row"><h3>Sort history</h3><p>Every save is kept, newest on top. Use, rename or delete any of them. Deleted sorts go to the Recycle Bin.</p></div>
+        <div class="row"><h3>New items by name</h3><p>A new download lands after your sorted icons, in name order, folders first. It never covers one of yours.</p></div>
+        <div class="row"><h3>Undo</h3><p>Every rearrange can be undone with one key, and redone with the same key.</p></div>
+        <div class="row"><h3>Glide and chime</h3><p>Icons glide into place one after another, a small toast confirms what moved, and a quiet chime plays. All of it can be turned off.</p></div>
       </div>
+    </div>
+    <div class="keys reveal">
+      <p>Shortcuts you can change. They work while NJ-Sort sits in the hidden icons. Click a box in the window and press new keys.</p>
+      <div><b>Save sort now</b><kbd>Alt</kbd> <kbd>S</kbd></div>
+      <div><b>Rearrange</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></div>
+      <div><b>Undo</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Z</kbd></div>
+      <div><b>Open NJ-Sort</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>N</kbd></div>
     </div>
   </section>
 
   <section class="wrap" id="install">
-    <h2 class="reveal">Three steps, no admin prompt.</h2>
+    <h2 class="reveal">Three steps. No admin rights.</h2>
     <div class="steps">
-      <div class="step reveal"><h3><i class="ph ph-download-simple"></i>Download</h3><p>Get <code>NJ-Sort.exe</code> from the latest release. One file, no installer, about 200 KB.</p></div>
-      <div class="step reveal"><h3><i class="ph ph-cursor-click"></i>Open it</h3><p>It copies itself to <code>%LOCALAPPDATA%\NJ-Sort</code>, opens its window and waits in the hidden icons.</p></div>
-      <div class="step reveal"><h3><i class="ph ph-floppy-disk"></i>Save your sort</h3><p>Arrange your icons and press <kbd>Alt</kbd> <kbd>S</kbd>. From then on, NJ-Sort keeps them there.</p></div>
+      <div class="step reveal"><h3>Download</h3><p>Get <code>NJ-Sort.exe</code> from the latest release. One file, no installer, about 200 KB.</p></div>
+      <div class="step reveal"><h3>Open it</h3><p>It copies itself to <code>%LOCALAPPDATA%\NJ-Sort</code>, opens its window and waits in the hidden icons.</p></div>
+      <div class="step reveal"><h3>Save your sort</h3><p>Arrange your icons and press <kbd>Alt</kbd> <kbd>S</kbd>. From then on, NJ-Sort keeps them there.</p></div>
     </div>
     <p class="fine reveal">For Windows 10 or 11. The file isn't code-signed yet, so SmartScreen may ask on the first run: choose More info, then Run anyway. NJ-Sort only ever moves the desktop's own icons. If Windows' Auto arrange icons is on, NJ-Sort asks you to turn it off rather than fight it.</p>
   </section>
