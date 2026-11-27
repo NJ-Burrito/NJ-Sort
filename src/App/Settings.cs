@@ -19,12 +19,14 @@ using D = System.Drawing;
 
 class Settings {
     public static readonly string[] KeyIds = { "hk_save", "hk_rearrange", "hk_undo", "hk_open" };
-    public static readonly string[] KeyNames = { "Save sort now", "Rearrange to the active sort", "Undo the last move", "Open NJ-Sort" };
+    public static readonly string[] KeyNames = { "Save sort now", "Rearrange to the active sort", "Undo the last move", "Open NJ-Sort" };   // English: for the log
+    public static string KeyName(int i) { return Tx.KeyName(i); }   // the shortcut names live in Text/Strings.cs (kn.0 .. kn.3)
     static readonly string[] Defaults = { "Alt+S", "Ctrl+Alt+R", "Ctrl+Alt+Z", "Ctrl+Alt+N" };
     public Hk[] Keys = Defaults.Select(Hk.Parse).ToArray();
     public bool AutoRestore = true, SortExtras = true, Animate = true, Sound = true, TipShown;
     public int Volume = 70;
     public string Active = "";
+    public string Language = "auto";   // auto | en | ar (see Text/Strings.cs)
     static string FilePath { get { return Path.Combine(App.Dir, "settings.ini"); } }
 
     public static Settings Load() {
@@ -44,6 +46,7 @@ class Settings {
                 else if (k == "tip_shown") s.TipShown = v != "0";
                 else if (k == "volume") { int x; if (int.TryParse(v, out x)) s.Volume = Math.Max(0, Math.Min(100, x)); }
                 else if (k == "active") s.Active = v;
+                else if (k == "language") { string lg = Tx.ParseLang(v); if (lg != null) s.Language = lg; }
                 else if (k == "save_mods") uint.TryParse(v, out oldMods);          // the old NJ-Sort save hotkey
                 else if (k == "save_key") oldKey = v;
             }
@@ -57,7 +60,7 @@ class Settings {
         for (int i = 0; i < KeyIds.Length; i++) lines.Add(KeyIds[i] + "=" + Keys[i]);
         lines.Add("auto_restore=" + (AutoRestore ? 1 : 0)); lines.Add("sort_extras=" + (SortExtras ? 1 : 0));
         lines.Add("animate=" + (Animate ? 1 : 0)); lines.Add("sound=" + (Sound ? 1 : 0)); lines.Add("volume=" + Volume);
-        lines.Add("tip_shown=" + (TipShown ? 1 : 0)); lines.Add("active=" + Active);
+        lines.Add("tip_shown=" + (TipShown ? 1 : 0)); lines.Add("active=" + Active); lines.Add("language=" + Language);
         try { App.WriteAtomic(FilePath, lines); } catch (Exception e) { App.Log("settings write: " + e.Message); }
     }
 }

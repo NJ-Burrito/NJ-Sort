@@ -33,6 +33,8 @@ public class Hk {
         p.Add(name);
         return string.Join("+", p);
     }
+    // what the window shows: key caps stay Latin, "no shortcut" follows the language
+    public string Show() { return Empty ? Tx.T("hk.none") : ToString(); }
     public static Hk Parse(string s) {
         var h = new Hk();
         if (string.IsNullOrWhiteSpace(s) || s.Trim() == "None") return h;

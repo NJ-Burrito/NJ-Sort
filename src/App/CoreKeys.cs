@@ -28,7 +28,7 @@ static partial class Core {
             var h = Cfg.Keys[i];
             if (h.Empty) continue;
             if (!Native.RegisterHotKey(msgWin.Handle, i + 1, h.Mods | 0x4000, (uint)h.Vk)) {
-                HkError[i] = h + " is taken by another program. Pick another.";
+                HkError[i] = Tx.F("hk.taken", h);
                 App.Log("shortcut " + h + " (" + Settings.KeyNames[i] + ") is taken by another program");
             }
         }

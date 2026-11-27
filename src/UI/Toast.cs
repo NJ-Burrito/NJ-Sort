@@ -22,29 +22,31 @@ static class Toast {
     const string Xaml = @"
 <Window xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
         WindowStyle='None' AllowsTransparency='True' Background='Transparent' Topmost='True' ShowInTaskbar='False'
-        ShowActivated='False' Focusable='False' SizeToContent='WidthAndHeight' ResizeMode='NoResize' IsHitTestVisible='False'>
-  <Grid x:Name='Root' Margin='30' Opacity='0' RenderTransformOrigin='0.5,1'>
+        ShowActivated='False' Focusable='False' SizeToContent='WidthAndHeight' ResizeMode='NoResize' IsHitTestVisible='False'
+        UseLayoutRounding='True' TextOptions.TextFormattingMode='Ideal'>
+  <Grid x:Name='Root' Margin='32' Opacity='0' RenderTransformOrigin='0.5,1'>
     <Grid.RenderTransform><TransformGroup>
-      <ScaleTransform x:Name='Sc' ScaleX='0.92' ScaleY='0.92'/><TranslateTransform x:Name='Ty' Y='18'/><TranslateTransform x:Name='Sx'/>
+      <ScaleTransform x:Name='Sc' ScaleX='0.96' ScaleY='0.96'/><TranslateTransform x:Name='Ty' Y='12'/><TranslateTransform x:Name='Sx'/>
     </TransformGroup></Grid.RenderTransform>
-    <Border CornerRadius='18' Background='#F5161838' BorderBrush='#40FFB02E' BorderThickness='1' Padding='14,12,24,12' MinWidth='300'>
-      <Border.Effect><DropShadowEffect BlurRadius='30' ShadowDepth='8' Direction='270' Opacity='0.55'/></Border.Effect>
+    <Border CornerRadius='12' Background='#F5181B3C' BorderBrush='~LINE2~' BorderThickness='1' Padding='12,12,24,12' MinWidth='320'>
+      <Border.Effect><DropShadowEffect BlurRadius='32' ShadowDepth='8' Direction='270' Opacity='0.5'/></Border.Effect>
       <StackPanel Orientation='Horizontal'>
-        <Grid Width='42' Height='42'>
-          <Ellipse x:Name='Disc' Fill='#FFB02E' RenderTransformOrigin='0.5,0.5'>
-            <Ellipse.RenderTransform><ScaleTransform x:Name='DiscSc'/></Ellipse.RenderTransform>
-          </Ellipse>
-          <Path x:Name='Mark' Stroke='#161838' StrokeThickness='3.2' StrokeStartLineCap='Round' StrokeEndLineCap='Round'
+        <Grid Width='40' Height='40' FlowDirection='LeftToRight'>
+          <Border x:Name='Disc' CornerRadius='10' Background='~ACC~' RenderTransformOrigin='0.5,0.5'>
+            <Border.RenderTransform><ScaleTransform x:Name='DiscSc'/></Border.RenderTransform>
+          </Border>
+          <Path x:Name='Mark' Stroke='~INK~' StrokeThickness='3' StrokeStartLineCap='Round' StrokeEndLineCap='Round'
                 StrokeLineJoin='Round' StrokeDashArray='24 24' StrokeDashOffset='24' Width='42' Height='42'/>
         </Grid>
-        <StackPanel Margin='14,0,0,0' VerticalAlignment='Center'>
-          <TextBlock x:Name='Title' FontFamily='Thmanyah Sans, Segoe UI' FontSize='17' FontWeight='Bold' Foreground='#ECEEFF'/>
-          <TextBlock x:Name='Sub' FontFamily='Thmanyah Sans, Segoe UI' FontSize='13' Foreground='#AAAED6' Margin='0,2,0,0' MaxWidth='460' TextWrapping='Wrap'/>
+        <StackPanel Margin='16,0,0,0' VerticalAlignment='Center'>
+          <TextBlock x:Name='Title' FontFamily='Thmanyah Sans, Segoe UI' FontSize='16' FontWeight='Bold' Foreground='~FG~'/>
+          <TextBlock x:Name='Sub' FontFamily='Thmanyah Sans, Segoe UI' FontSize='13' Foreground='~MUTED~' Margin='0,2,0,0' MaxWidth='440' TextWrapping='Wrap'/>
         </StackPanel>
       </StackPanel>
     </Border>
   </Grid>
 </Window>";
+    static string Tint(string kind) { return kind == "error" ? Theme.Bad : kind == "info" ? Theme.Info : Theme.Acc; }
     static readonly Dictionary<string, string> Glyphs = new Dictionary<string, string> {
         { "save",  "M13,21.5 L18.5,27 L29,15.5" },                                  // check
         { "sort",  "M12,14.5 L30,14.5 M12,21 L25,21 M12,27.5 L20,27.5" },           // sorted lines
@@ -53,13 +55,13 @@ static class Toast {
         { "error", "M21,12.5 L21,23 M21,29 L21,29.2" } };
     internal static W.Window win; static WT.DispatcherTimer hold; static int gen;
     static W.UIElement root; static WM.ScaleTransform sc, discSc; static WM.TranslateTransform ty, sx;
-    static W.Shapes.Path mark; static W.Shapes.Ellipse disc; static WC.TextBlock title, sub;
+    static W.Shapes.Path mark; static WC.Border disc; static WC.TextBlock title, sub;
 
     static void Build() {
-        win = (W.Window)W.Markup.XamlReader.Parse(Xaml);
+        win = (W.Window)W.Markup.XamlReader.Parse(Theme.Apply(Xaml));
         Func<string, object> n = win.FindName;
         root = (W.UIElement)n("Root"); sc = (WM.ScaleTransform)n("Sc"); ty = (WM.TranslateTransform)n("Ty"); sx = (WM.TranslateTransform)n("Sx");
-        discSc = (WM.ScaleTransform)n("DiscSc"); disc = (W.Shapes.Ellipse)n("Disc"); mark = (W.Shapes.Path)n("Mark");
+        discSc = (WM.ScaleTransform)n("DiscSc"); disc = (WC.Border)n("Disc"); mark = (W.Shapes.Path)n("Mark");
         title = (WC.TextBlock)n("Title"); sub = (WC.TextBlock)n("Sub");
         win.SourceInitialized += delegate {   // click-through, never takes focus, not in Alt+Tab
             var h = new WIn.WindowInteropHelper(win).Handle;
@@ -80,29 +82,29 @@ static class Toast {
         try {
             if (win == null) Build();
             gen++;
+            win.FlowDirection = Tx.Flow;   // Arabic: the card reads from the right; the check or arrow drawing is never mirrored
             title.Text = head; sub.Text = detail ?? ""; sub.Visibility = string.IsNullOrEmpty(detail) ? W.Visibility.Collapsed : W.Visibility.Visible;
             string g; if (!Glyphs.TryGetValue(kind, out g)) g = Glyphs["info"];
             mark.Data = WM.Geometry.Parse(g);
             bool bad = kind == "error";
-            disc.Fill = new WM.SolidColorBrush(bad ? WM.Color.FromRgb(0xF8, 0x71, 0x71) : kind == "info" ? WM.Color.FromRgb(0x8E, 0x95, 0xE6) : WM.Color.FromRgb(0xFF, 0xB0, 0x2E));
-            mark.Stroke = new WM.SolidColorBrush(WM.Color.FromRgb(0x16, 0x18, 0x38));
+            disc.Background = Theme.Brush(Tint(kind));
+            mark.Stroke = Theme.Brush(Theme.Ink);
             if (!win.IsVisible) win.Show();
             win.UpdateLayout();
             var wa = W.SystemParameters.WorkArea;
-            win.Left = wa.Left + (wa.Width - win.ActualWidth) / 2; win.Top = wa.Bottom - win.ActualHeight - 8;
+            win.Left = wa.Left + (wa.Width - win.ActualWidth) / 2; win.Top = wa.Bottom - win.ActualHeight;
 
-            bool motion = W.SystemParameters.ClientAreaAnimation && Core.Cfg.Animate;
-            var back = new WA.BackEase { Amplitude = 0.45, EasingMode = WA.EasingMode.EaseOut };
+            bool motion = Theme.Motion && Core.Cfg.Animate;
             var cout = new WA.CubicEase { EasingMode = WA.EasingMode.EaseOut };
             int d = motion ? 1 : 0;
             root.BeginAnimation(W.UIElement.OpacityProperty, A(null, 1, 160 * d + 1, null));
-            ty.BeginAnimation(WM.TranslateTransform.YProperty, A(motion ? 18 : 0, 0, 420 * d + 1, back));
-            S2(sc, A(motion ? 0.92 : 1, 1, 420 * d + 1, back));
-            S2(discSc, A(motion ? 0.3 : 1, 1, 460 * d + 1, new WA.BackEase { Amplitude = 0.8, EasingMode = WA.EasingMode.EaseOut }, 60 * d));
-            mark.BeginAnimation(W.Shapes.Shape.StrokeDashOffsetProperty, A(motion ? 24 : 0, 0, 300 * d + 1, cout, 230 * d));
+            ty.BeginAnimation(WM.TranslateTransform.YProperty, A(motion ? 12 : 0, 0, 260 * d + 1, cout));
+            S2(sc, A(motion ? 0.96 : 1, 1, 260 * d + 1, cout));
+            S2(discSc, A(motion ? 0.7 : 1, 1, 240 * d + 1, cout, 60 * d));
+            mark.BeginAnimation(W.Shapes.Shape.StrokeDashOffsetProperty, A(motion ? 24 : 0, 0, 240 * d + 1, cout, 120 * d));
             if (bad && motion)
-                sx.BeginAnimation(WM.TranslateTransform.XProperty, new WA.DoubleAnimation(-6, 6, TimeSpan.FromMilliseconds(55)) {
-                    AutoReverse = true, RepeatBehavior = new WA.RepeatBehavior(3), BeginTime = TimeSpan.FromMilliseconds(180), FillBehavior = WA.FillBehavior.Stop });
+                sx.BeginAnimation(WM.TranslateTransform.XProperty, new WA.DoubleAnimation(-4, 4, TimeSpan.FromMilliseconds(50)) {
+                    AutoReverse = true, RepeatBehavior = new WA.RepeatBehavior(3), BeginTime = TimeSpan.FromMilliseconds(160), FillBehavior = WA.FillBehavior.Stop });
             hold.Stop(); hold.Interval = TimeSpan.FromMilliseconds(bad ? 3600 : 2200); hold.Start();
         } catch (Exception e) { App.Log("toast: " + e.Message); }
     }
@@ -110,8 +112,9 @@ static class Toast {
     // README images: the toast at rest, rendered off-screen
     public static W.UIElement RenderPose(string kind, string head, string detail) {
         if (win == null) Build();
+        win.FlowDirection = Tx.Flow;
         title.Text = head; sub.Text = detail ?? ""; mark.Data = WM.Geometry.Parse(Glyphs[kind]);
-        disc.Fill = new WM.SolidColorBrush(WM.Color.FromRgb(0xFF, 0xB0, 0x2E));
+        disc.Background = Theme.Brush(Tint(kind));
         root.Opacity = 1; sc.ScaleX = sc.ScaleY = 1; ty.Y = 0; discSc.ScaleX = discSc.ScaleY = 1; mark.StrokeDashOffset = 0;
         win.Left = -20000; win.Show(); win.UpdateLayout();
         return (W.UIElement)win.Content;
@@ -124,10 +127,10 @@ static class Toast {
 
     static void Out() {
         int my = gen;
-        bool motion = W.SystemParameters.ClientAreaAnimation && Core.Cfg.Animate;
-        var fade = A(null, 0, motion ? 260 : 1, new WA.QuadraticEase { EasingMode = WA.EasingMode.EaseIn });
+        bool motion = Theme.Motion && Core.Cfg.Animate;
+        var fade = A(null, 0, motion ? 200 : 1, new WA.QuadraticEase { EasingMode = WA.EasingMode.EaseIn });
         fade.Completed += delegate { if (my == gen) win.Hide(); };
         root.BeginAnimation(W.UIElement.OpacityProperty, fade);
-        if (motion) ty.BeginAnimation(WM.TranslateTransform.YProperty, A(null, 10, 260, new WA.QuadraticEase { EasingMode = WA.EasingMode.EaseIn }));
+        if (motion) ty.BeginAnimation(WM.TranslateTransform.YProperty, A(null, 8, 200, new WA.QuadraticEase { EasingMode = WA.EasingMode.EaseIn }));
     }
 }

@@ -52,14 +52,20 @@
    "applicationCategory": "UtilitiesApplication",
    "operatingSystem": "Windows 10, Windows 11",
    "image": "https://nj-burrito.github.io/NJ-Sort/logo-1024.png",
-   "screenshot": "https://nj-burrito.github.io/NJ-Sort/window.png",
+   "softwareVersion": "1.1.0",
+   "screenshot": [
+    "https://nj-burrito.github.io/NJ-Sort/window-ar.png",
+    "https://nj-burrito.github.io/NJ-Sort/window.png"
+   ],
    "isAccessibleForFree": true,
    "featureList": [
     "يحفظ مواضع أيقونات سطح المكتب كترتيب",
     "يعيد الأيقونات بعد إعادة تشغيل مستكشف الملفات وتسجيل الدخول وتغيّر الشاشة",
     "سجل الترتيبات مع التراجع",
     "العناصر الجديدة تأتي بعد المحفوظة مرتبة بالاسم",
-    "اختصارات لوحة مفاتيح قابلة للتغيير"
+    "اختصارات لوحة مفاتيح قابلة للتغيير",
+    "تنساب الأيقونات في مسارات منحنية وتستقر بنعومة مع أصوات قصيرة مسجّلة",
+    "نسخة عربية كاملة من التطبيق من اليمين إلى اليسار، تُختار من النافذة أو تتبع لغة ويندوز"
    ],
    "license": "https://opensource.org/licenses/MIT",
    "offers": {
@@ -131,6 +137,7 @@
     <div class="nav-links">
       <a href="#how">كيف يعمل</a>
       <a href="#features">المزايا</a>
+      <a href="#motion">الحركة</a>
       <a href="https://github.com/NJ-Burrito/NJ-Sort">المصدر</a>
       <a class="lang" href="../" hreflang="en" lang="en" dir="ltr">English</a>
       <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>تنزيل</a>
@@ -158,7 +165,7 @@
       </video>
       <img class="still" src="../hero-ar-still.jpg" alt="" width="1440" height="1080" loading="lazy" decoding="async">
     </div>
-      <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="إيقاف العرض مؤقتاً"><svg class="i i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="i i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
+      <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="إيقاف العرض مؤقتًا"><svg class="i i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="i i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
     </div>
   </section>
   </div>
@@ -166,7 +173,7 @@
   <div class="proof"><div class="wrap"><ul>
     <li>مجاني<small>بلا حساب ولا إعلانات</small></li>
     <li>رخصة MIT<small>مفتوح المصدر</small></li>
-    <li>نحو 200 كيلوبايت<small>ملف واحد بلا مثبّت</small></li>
+    <li>نحو 1.3 ميغابايت<small>ملف واحد بلا مثبّت</small></li>
     <li>ويندوز 10 و11<small>بلا صلاحيات مدير</small></li>
   </ul></div></div>
 
@@ -174,12 +181,16 @@
     <h2 class="reveal">احفظ مرة واحدة. وتبقى في مكانها.</h2>
     <p class="sub reveal">اضغط <span dir="ltr"><kbd>Alt</kbd> <kbd>S</kbd></span> للحفظ. كل حفظ يدخل في السجل، فيمكنك الرجوع إلى أي ترتيب سابق. العناصر غير الموجودة في الترتيب تأتي بعده مرتبة بالاسم، كما يفعل «الترتيب حسب الاسم» في ويندوز.</p>
     <div class="shotrow reveal">
-      <div class="shot"><img src="../window.png" alt="نافذة NJ-Sort: زر حفظ الترتيب الآن، وإعادة الترتيب، والتراجع، وسجل الترتيبات مع الترتيب النشط، والاختصارات، ومفاتيح السلوك. النافذة بالإنجليزية." loading="lazy" width="1004" height="859"></div>
+      <div class="shot"><img src="../window-ar.png" alt="نافذة NJ-Sort بالعربية على خلفية داكنة: زر حفظ الترتيب الآن، وإعادة الترتيب، والتراجع، وسجل الترتيبات مع علامة على الترتيب النشط، والاختصارات، ومفاتيح السلوك، واختيار اللغة." loading="lazy" width="1200" height="1185"></div>
       <ol class="legend">
-        <li><div><b>Save sort now (حفظ الترتيب الآن)</b>يحفظ مكان كل أيقونة كترتيب جديد، ويجعله الترتيب النشط.</div></li>
-        <li><div><b>Sort history (سجل الترتيبات)</b>الأحدث في الأعلى، وعلى الترتيب النشط علامة. اختر أحدها للرجوع إلى تلك اللحظة.</div></li>
-        <li><div><b>Shortcuts (الاختصارات)</b>اضغط على مربع ثم اضغط المفاتيح الجديدة. ويحذف Backspace الاختصار.</div></li>
+        <li><div><b>حفظ الترتيب الآن</b>يحفظ مكان كل أيقونة كترتيب جديد، ويجعله الترتيب النشط.</div></li>
+        <li><div><b>سجل الترتيبات</b>الأحدث في الأعلى، وعلى الترتيب النشط علامة. اختر أحدها للرجوع إلى تلك اللحظة.</div></li>
+        <li><div><b>الاختصارات</b>اضغط على مربع ثم اضغط المفاتيح الجديدة. ويحذف Backspace الاختصار.</div></li>
       </ol>
+    </div>
+    <div class="toasts reveal" style="--c:768fr 824fr">
+      <figure><img src="../toast-save-ar.png" alt="الرسالة بعد الحفظ: تم حفظ الترتيب، وهو الآن الترتيب النشط." loading="lazy" width="768" height="260"><figcaption>بعد الحفظ، تقول رسالة صغيرة ما الذي حُفظ.</figcaption></figure>
+      <figure><img src="../toast-sort-ar.png" alt="الرسالة بعد إعادة الترتيب: في أماكنها المحفوظة 22، وبعدها مرتبة بالاسم 2" loading="lazy" width="824" height="260"><figcaption>بعد إعادة الترتيب، تبيّن كم أيقونة عادت إلى مكانها وكم أيقونة جاءت بعدها.</figcaption></figure>
     </div>
   </section>
 
@@ -192,9 +203,10 @@
       </div>
       <div class="rows reveal">
         <div class="row"><h3>سجل الترتيبات</h3><p>يُحفظ كل ترتيب، والأحدث في الأعلى. يمكنك استخدام أي منها أو إعادة تسميته أو حذفه. الترتيبات المحذوفة تذهب إلى سلة المحذوفات.</p></div>
-        <div class="row"><h3>العناصر الجديدة بالاسم</h3><p>يظهر التنزيل الجديد بعد أيقوناتك المرتبة، بترتيب الأسماء والمجلدات أولاً. ولا يغطي أياً من أيقوناتك.</p></div>
+        <div class="row"><h3>العناصر الجديدة بالاسم</h3><p>يظهر التنزيل الجديد بعد أيقوناتك المرتبة، بترتيب الأسماء والمجلدات أولًا. ولا يغطي أيًّا من أيقوناتك.</p></div>
         <div class="row"><h3>التراجع</h3><p>يمكن التراجع عن كل إعادة ترتيب بمفتاح واحد، والإعادة بالمفتاح نفسه.</p></div>
-        <div class="row"><h3>الانسياب والنغمة</h3><p>تنساب الأيقونات إلى أماكنها واحدة تلو الأخرى، وتؤكد رسالة صغيرة ما تحرّك، وتُسمع نغمة هادئة. ويمكن إيقاف ذلك كله.</p></div>
+        <div class="row"><h3>الانسياب والصوت</h3><p>تنساب الأيقونات إلى أماكنها واحدة تلو الأخرى، وتؤكد رسالة صغيرة ما تحرّك، ويُسمع صوت قصير مسجّل، لكل من الحفظ وإعادة الترتيب والتراجع والأخطاء صوته. ويمكن إيقاف الحركة والصوت كلٌّ على حدة، ولمستوى الصوت شريط تمرير.</p></div>
+        <div class="row"><h3>العربية والإنجليزية</h3><p>التطبيق كله، من النافذة إلى الرسائل وقائمة الأيقونات المخفية، متوفر بالعربية من اليمين إلى اليسار. اختر «تلقائي» أو <span lang="en" dir="ltr">English</span> أو «العربية» من النافذة؛ والخيار التلقائي يتبع لغة العرض في ويندوز.</p></div>
       </div>
     </div>
     <div class="keys reveal">
@@ -207,23 +219,36 @@
     </div>
   </section>
 
+  <section class="wrap" id="motion">
+    <h2 class="reveal">أيقونات تنساب ولا تقفز.</h2>
+    <p class="sub reveal">ترتفع كل أيقونة قليلًا، ثم تسير في منحنى لطيف، وتستقر في مكانها بهبوط ناعم. وتنطلق واحدة تلو الأخرى، فيعود سطح مكتب من 28 أيقونة، مثل العرض، إلى مكانه في أقل من ثانية. وإن كانت الحركات متوقفة في ويندوز، توقفت هذه أيضًا.</p>
+    <div class="shotrow motionrow reveal">
+      <div class="shot"><img src="../motion.png" alt="تسعة إطارات من سطح مكتب تجريبي بالترتيب: أيقونات متناثرة على الشاشة، ثم تنساب في مسارات منحنية إلى شبكة مرتبة من الأعمدة" loading="lazy" width="1500" height="840"></div>
+      <ol class="legend">
+        <li><div><b>الارتفاع</b>تراجع صغير قبل الانطلاق، فتبدو البداية قرارًا.</div></li>
+        <li><div><b>المنحنى</b>قوس لطيف بدل انزلاق مستقيم.</div></li>
+        <li><div><b>الهبوط</b>تجاوز طفيف للمكان ثم استقرار عليه تمامًا.</div></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="wrap" id="install">
     <h2 class="reveal">ثلاث خطوات. بلا صلاحيات مدير.</h2>
     <div class="steps">
-      <div class="step reveal"><h3>نزّل</h3><p>احصل على <code>NJ-Sort.exe</code> من آخر إصدار. ملف واحد بلا مثبّت، حجمه نحو 200 كيلوبايت.</p></div>
+      <div class="step reveal"><h3>نزّل</h3><p>احصل على <code>NJ-Sort.exe</code> من آخر إصدار. ملف واحد بلا مثبّت، حجمه نحو 1.3 ميغابايت.</p></div>
       <div class="step reveal"><h3>افتحه</h3><p>ينسخ نفسه إلى <code>%LOCALAPPDATA%\<span class="nb">NJ-Sort</span></code> ويفتح نافذته وينتظر في الأيقونات المخفية.</p></div>
       <div class="step reveal"><h3>احفظ ترتيبك</h3><p>رتّب أيقوناتك ثم اضغط <span dir="ltr"><kbd>Alt</kbd> <kbd>S</kbd></span>. ومن بعدها يبقيها <span class="nb">NJ-Sort</span> في أماكنها.</p></div>
     </div>
-    <p class="fine reveal">لويندوز 10 و11. الملف غير موقّع رقمياً بعد، فقد تسألك SmartScreen عند أول تشغيل: اختر «مزيد من المعلومات» ثم «تشغيل على أي حال». لا يحرّك <span class="nb">NJ-Sort</span> إلا أيقونات سطح المكتب نفسها. وإن كان «ترتيب الأيقونات تلقائياً» في ويندوز مفعّلاً، يطلب منك إيقافه بدل أن ينازعه.</p>
+    <p class="fine reveal">لويندوز 10 و11. الملف غير موقّع رقميًا بعد، فقد تسألك SmartScreen عند أول تشغيل: اختر «مزيد من المعلومات» ثم «تشغيل على أي حال». لا يحرّك <span class="nb">NJ-Sort</span> إلا أيقونات سطح المكتب نفسها. وإن كان «ترتيب الأيقونات تلقائيًا» في ويندوز مفعّلًا، يطلب منك إيقافه بدل أن ينازعه.</p>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
     <span><span class="nb">NJ-Sort</span> من نادر الزغول. رخصة MIT.</span>
-    <span>يعمل جيداً مع <a href="https://nj-burrito.github.io/NJ-Flush/"><span class="nb">NJ-Flush</span></a>. <a href="../" hreflang="en" lang="en" dir="ltr">English</a></span>
+    <span>يعمل جيدًا مع <a href="https://nj-burrito.github.io/NJ-Flush/"><span class="nb">NJ-Flush</span></a>. <a href="../" hreflang="en" lang="en" dir="ltr">English</a></span>
     <div class="seo">
-      <span>يُعرف أيضاً باسم NJ Sort وnj-sort وnj_sort. من تطوير نادر الزغول (Nader Alzghoul)، حساب GitHub: <a href="https://github.com/NJ-Burrito">NJ-Burrito</a>.</span>
+      <span>يُعرف أيضًا باسم NJ Sort وnj-sort وnj_sort. من تطوير نادر الزغول (Nader Alzghoul)، حساب GitHub: <a href="https://github.com/NJ-Burrito">NJ-Burrito</a>.</span>
       <h2>المزيد من NJ-Burrito</h2>
       <ul>
         <li><a href="https://nj-burrito.github.io/">الموقع الشخصي</a></li>

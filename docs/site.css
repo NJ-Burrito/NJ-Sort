@@ -145,3 +145,11 @@ footer [aria-current] { color: var(--text); font-weight: 600; }
   nav .btn { padding: 12px 16px; }
 }
 .nb { white-space: nowrap; }
+
+/* 1.1: toasts under the window, and the motion section */
+.toasts { display: grid; grid-template-columns: var(--c, 1fr 1fr); gap: 28px 40px; margin-top: 40px; align-items: end; }
+.toasts figure { display: grid; gap: 10px; }
+.toasts img { width: 100%; height: auto; display: block; }
+.toasts figcaption { color: var(--muted); font-size: 15px; }
+.motionrow { grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); }
+@media (max-width: 860px) { .toasts { grid-template-columns: minmax(0, 1fr); } .motionrow { grid-template-columns: minmax(0, 1fr); } }

@@ -22,7 +22,7 @@ public class Sort {
     public string Id, Name = "";
     public DateTime Saved;
     public List<DIcon> Icons = new List<DIcon>();
-    public string Title { get { return string.IsNullOrEmpty(Name) ? Saved.ToString("ddd d MMM, HH:mm") : Name; } }
+    public string Title { get { return string.IsNullOrEmpty(Name) ? Tx.SortTitle(Saved) : Name; } }
 }
 
 static class Store {
@@ -88,7 +88,7 @@ static class Store {
                 icons.Add(new DIcon { Name = p[0], N = n, X = x, Y = y });
         }
         if (icons.Count == 0) return;
-        Add(icons, "Imported from the old NJ-Sort", File.GetLastWriteTime(old));
+        Add(icons, Tx.T("imported"), File.GetLastWriteTime(old));
         App.Log("imported layout.tsv as the first sort (" + icons.Count + " items)");
     }
 

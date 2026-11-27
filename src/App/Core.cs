@@ -36,7 +36,7 @@ static partial class Core {
     static EventWaitHandle showEvt, quitEvt;
 
     public static void Start(bool showWindow) {
-        Cfg = Settings.Load();
+        Cfg = Settings.Load(); Tx.Resolve();
         try { Store.Migrate(); } catch (Exception e) { App.Log("migrate: " + e.Message); }
         Store.Reload();
         if (Store.Find(Cfg.Active) == null && Store.All.Count > 0) { Cfg.Active = Store.All[0].Id; Cfg.Write(); }
