@@ -7,6 +7,9 @@
 <meta name="description" content="Free, open-source Windows tool by Nader Alzghoul (NJ-Burrito). It saves your desktop icon arrangement and puts it back after File Explorer restarts.">
 <meta name="author" content="Nader Alzghoul (NJ-Burrito)">
 <link rel="canonical" href="https://nj-burrito.github.io/NJ-Sort/">
+<link rel="alternate" hreflang="en" href="https://nj-burrito.github.io/NJ-Sort/">
+<link rel="alternate" hreflang="ar" href="https://nj-burrito.github.io/NJ-Sort/ar/">
+<link rel="alternate" hreflang="x-default" href="https://nj-burrito.github.io/NJ-Sort/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NJ-Burrito">
 <meta property="og:title" content="NJ-Sort: keep your Windows desktop icons where you put them">
@@ -42,7 +45,7 @@
    "applicationCategory": "UtilitiesApplication",
    "operatingSystem": "Windows 10, Windows 11",
    "image": "https://nj-burrito.github.io/NJ-Sort/logo-1024.png",
-   "screenshot": "https://nj-burrito.github.io/NJ-Sort/window.png",
+      "screenshot": "https://nj-burrito.github.io/NJ-Sort/window.png",
    "isAccessibleForFree": true,
    "featureList": ["Saves desktop icon positions as a sort", "Puts icons back after File Explorer restarts, sign-in and screen changes", "Sort history with undo", "New items sorted by name after the saved ones", "Changeable keyboard shortcuts"],
    "license": "https://opensource.org/licenses/MIT",
@@ -78,186 +81,76 @@
    "description": "A demo desktop with generic icon names. File Explorer restarts, the icons scatter, and NJ-Sort glides them back into the saved sort.",
    "thumbnailUrl": "https://nj-burrito.github.io/NJ-Sort/hero-poster.jpg",
    "contentUrl": "https://nj-burrito.github.io/NJ-Sort/hero.mp4",
-   "uploadDate": "2026-11-27"
+   "uploadDate": "2026-11-27",
+   "duration": "PT6.6S",
+   "embedUrl": "https://nj-burrito.github.io/NJ-Sort/"
   }
  ]
 }
 </script>
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="apple-touch-icon" href="logo-1024.png">
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<style>
-  /* Design read: landing for Windows users, dark indigo from the app's own logo, amber for the one moving thing.
-     Font: Thmanyah Sans when installed (never web-served: licence), else the system UI face. */
-  :root {
-    --bg: #0e1027; --bg-2: #171a3b; --line: #262a5a; --text: #eceeff; --muted: #a3a8d4;
-    --accent: #ffb02e; --accent-ink: #181a3a; --tile: #eceeff; --desk: #1d2150;
-    --r: 14px; --ease: cubic-bezier(.16, 1, .3, 1); --shadow: 0 40px 80px -30px rgba(0, 0, 0, .6);
-  }
-  @media (prefers-color-scheme: light) {
-    :root { --bg: #f5f5fc; --bg-2: #ffffff; --line: #dedff0; --text: #14163a; --muted: #4f5380; --accent: #8a5200; --accent-ink: #ffffff; --shadow: 0 30px 60px -34px rgba(24, 26, 80, .35); }
-  }
-  * { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font: 16px/1.6 "Thmanyah Sans", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-  .skip { position: absolute; left: 16px; top: -60px; background: var(--accent); color: var(--accent-ink); padding: 10px 16px; border-radius: 10px; font-weight: 600; z-index: 10; text-decoration: none; }
-  .skip:focus { top: 12px; }
-  h1, h2, h3 { text-wrap: balance; } p { text-wrap: pretty; }
-  a { color: inherit; }
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-
-  nav { height: 68px; display: flex; align-items: center; justify-content: space-between; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
-  .brand img { width: 32px; height: 32px; }
-  .nav-links { display: flex; gap: 22px; align-items: center; font-size: 15px; color: var(--muted); }
-  .nav-links a { text-decoration: none; transition: color .15s; padding: 12px 0; }
-  @media (hover: hover) { .nav-links a:hover { color: var(--text); } }
-  .nav-links a.btn { padding: 12px 20px; color: #181a3a; }
-
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 600; text-decoration: none;
-         white-space: nowrap; transition: transform .2s var(--ease), background-color .2s; min-height: 44px; }
-  .btn:active { transform: scale(.96); }
-  .btn-primary { background: #ffb02e; color: #181a3a; }
-  .btn-primary { box-shadow: 0 8px 20px -8px rgba(255, 176, 46, .55); }
-  @media (hover: hover) { .btn-primary:hover { transform: translateY(-1px); } }
-  .btn-ghost { border: 1px solid var(--line); }
-  @media (hover: hover) { .btn-ghost:hover { background: var(--bg-2); } }
-  .btn i { font-size: 18px; }
-
-  .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; padding: 48px 0 72px; min-height: min(760px, calc(100dvh - 68px)); }
-  h1 { font-size: clamp(40px, 5.2vw, 62px); line-height: 1.04; letter-spacing: -.035em; font-weight: 800; }
-  h1 em { font-style: normal; color: var(--accent); }
-  .lede { color: var(--muted); font-size: 19px; max-width: 36ch; margin: 22px 0 32px; }
-  .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 22px; color: var(--muted); font-size: 14px; list-style: none; padding: 0; }
-
-  /* the demo desktop: real positions, real glide (same easing and stagger as the app) */
-  .desk { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden;
-          background: radial-gradient(120% 90% at 85% 10%, #3a2d86 0, transparent 55%), linear-gradient(160deg, #23285e, #141737);
-          box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, .07); }
-  .desk noscript video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .pause { position: absolute; right: 10px; top: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; z-index: 2; background: rgba(10, 12, 30, .6); color: #eceeff; font-size: 18px; display: grid; place-items: center; transition: background-color .15s, transform .2s var(--ease); }
-  .pause:active { transform: scale(.96); }
-  @media (hover: hover) { .pause:hover { background: rgba(10, 12, 30, .85); } }
-  .pause .ph-play { display: none; } .pause[aria-pressed="true"] .ph-pause { display: none; } .pause[aria-pressed="true"] .ph-play { display: block; }
-  .pause[hidden] { display: none; }
-  .icon { position: absolute; left: 0; top: 0; width: 15%; display: flex; flex-direction: column; align-items: center; gap: 6px;
-          transition: transform .46s cubic-bezier(.33, 1, .68, 1) /* motion-ok: the glide mirrors the app's own animation */; will-change: transform; }
-  .icon .glyph { width: 52%; aspect-ratio: 1; border-radius: 22%; background: var(--c, #eceeff); display: grid; place-items: center;
-                 color: #1d2150; font-size: clamp(14px, 2.2vw, 24px); box-shadow: 0 6px 14px rgba(0,0,0,.3); }
-  .icon span { font-size: clamp(9px, 1.15vw, 12.5px); color: #eceeff; text-shadow: 0 1px 3px rgba(0,0,0,.8); text-align: center; line-height: 1.2; max-width: 100%; }
-  .icon.new .glyph { box-shadow: 0 0 0 2px #ffb02e, 0 6px 14px rgba(0,0,0,.3); }
-  .taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 7%; background: rgba(10, 12, 30, .75); backdrop-filter: blur(8px); }
-  .flash { position: absolute; inset: 0; background: #070816; opacity: 0; transition: opacity .25s; pointer-events: none; }
-  .note { position: absolute; top: 4%; left: 50%; transform: translateX(-50%); font-size: 13px; color: #c9ccf0; background: rgba(10,12,30,.7);
-          padding: 5px 12px; border-radius: 999px; opacity: 0; transition: opacity .25s; white-space: nowrap; }
-  .toast { position: absolute; left: 50%; bottom: 10%; transform: translate(-50%, 16px) scale(.92); opacity: 0;
-           display: flex; gap: 12px; align-items: center; padding: 10px 18px 10px 10px; border-radius: 14px; background: rgba(22, 24, 56, .96);
-           border: 1px solid rgba(255, 176, 46, .3); box-shadow: 0 16px 30px rgba(0,0,0,.5); white-space: nowrap;
-           transition: opacity .16s, transform .42s cubic-bezier(.34, 1.56, .64, 1); }
-  .toast.in { opacity: 1; transform: translate(-50%, 0) scale(1); }
-  .toast .disc { width: 34px; height: 34px; border-radius: 50%; background: #ffb02e; display: grid; place-items: center; color: #161838; font-size: 19px; }
-  .toast b { display: block; font-size: 14px; color: #eceeff; } .toast small { font-size: 12px; color: #a3a8d4; }
-
-  section { padding-block: 104px; }
-  section.wrap { padding-block: 96px; } .hero.wrap { padding-block: 48px 72px; }
-  h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -.025em; font-weight: 800; max-width: 22ch; }
-  .sub { color: var(--muted); max-width: 62ch; margin-top: 14px; font-size: 18px; }
-
-  .shot { margin-top: 48px; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px var(--line); }
-  .shot img { width: 100%; height: auto; display: block; }
-
-  .feat { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; margin-top: 48px; align-items: start; }
-  .lead { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35; letter-spacing: -.015em; font-weight: 600; text-wrap: pretty; }
-  .lead + p { color: var(--muted); margin-top: 18px; }
-  .rows { border-top: 1px solid var(--line); }
-  .row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 8px 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .row h3 { font-size: 17px; letter-spacing: -.01em; }
-  .row p { color: var(--muted); font-size: 15.5px; }
-  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 24px; margin-top: 56px; padding: 26px 28px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); }
-  .keys > p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
-  .keys b { display: block; font-size: 15px; margin-bottom: 6px; }
-  kbd { font: 600 13px/1 "Thmanyah Sans", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); border-bottom-width: 2px; background: var(--bg-2); color: var(--text); }
-  .keys kbd { background: var(--bg); }
-
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 48px; border-top: 1px solid var(--line); }
-  .step { padding: 28px 28px 0 0; }
-  .step h3 { font-size: 20px; }
-  .step p { color: var(--muted); margin-top: 8px; }
-  code { font: 600 .9em ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--bg-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
-  .fine { margin-top: 40px; color: var(--muted); font-size: 15px; max-width: 72ch; }
-
-  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer .seo { flex-basis: 100%; display: grid; gap: 8px; }
-  footer h2 { font-size: 14px; letter-spacing: 0; font-weight: 700; color: var(--text); max-width: none; }
-  footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0 20px; }
-  footer li a, footer [aria-current] { display: inline-block; padding: 10px 0; }
-  footer [aria-current] { color: var(--text); font-weight: 600; }
-
-  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
-  .js .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .js .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; }
-    .icon, .toast { transition: none; }
-  }
-  @media (max-width: 860px) {
-    .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-    .hero > * { min-width: 0; }
-    body { overflow-x: hidden; }
-    .wrap { padding-left: 16px; padding-right: 16px; }
-    section { padding-top: 64px; padding-bottom: 64px; }
-    nav .btn { padding: 12px 16px; }
-    .feat { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .row { grid-template-columns: minmax(0, 1fr); }
-    .keys { grid-template-columns: 1fr 1fr; }
-    section.wrap { padding-block: 64px; } .hero.wrap { padding-block: 24px 48px; }
-    .steps { grid-template-columns: 1fr; } .step { padding-right: 0; }
-    .nav-links a:not(.btn) { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
 <header class="wrap">
   <nav aria-label="Main">
-    <a class="brand" href="#" aria-label="NJ-Sort, back to top"><img src="logo.png" alt="" width="32" height="32">NJ-Sort</a>
+    <a class="brand" href="#" aria-label="NJ-Sort, back to top"><img src="logo.png" alt="" width="32" height="32"><span class="nb">NJ-Sort</span></a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="https://github.com/NJ-Burrito/NJ-Sort">Source</a>
-      <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><i class="ph ph-download-simple"></i>Download</a>
+      <a class="lang" href="ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a>
+      <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Download</a>
     </div>
   </nav>
 </header>
+</div>
 
 <main id="main">
+  <div class="band">
   <section class="wrap hero" aria-labelledby="top-h">
     <div>
       <h1 id="top-h">Your icons, <em>where you put them.</em></h1>
       <p class="lede">Save the way your desktop is arranged. When Windows scatters it, NJ-Sort glides every icon back.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><i class="ph ph-download-simple"></i>Download</a>
-        <a class="btn btn-ghost" href="https://github.com/NJ-Burrito/NJ-Sort"><i class="ph ph-github-logo"></i>Source</a>
+        <a class="btn btn-primary" href="https://github.com/NJ-Burrito/NJ-Sort/releases/latest"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Download</a>
+        <a class="btn btn-ghost" href="https://github.com/NJ-Burrito/NJ-Sort"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5c0-1 .1-1.5-.5-2.2 2.8-.3 5.5-1.4 5.5-6.1 0-1.3-.5-2.4-1.3-3.3.2-.8.2-2.1-.1-3.2 0 0-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.4 5.6 2.7 5.6 2.7c-.3 1.1-.3 2.4-.1 3.2A4.7 4.7 0 0 0 4.2 9.2c0 4.7 2.7 5.8 5.5 6.1-.5.6-.6 1.2-.5 2.2V21"/></svg>Source</a>
       </div>
-      <ul class="facts"><li>Free</li><li>MIT licence</li><li>One file, about 200 KB</li><li>Windows 10 and 11</li></ul>
     </div>
-    <div class="desk" id="desk" role="img" aria-label="A demo desktop: File Explorer restarts and the icons scatter, then NJ-Sort glides them back into the saved sort, and two new files line up after them by name">
-      <div class="taskbar"></div>
-      <noscript><video src="hero.mp4" poster="hero-poster.jpg" autoplay loop muted playsinline width="720" height="540"></video></noscript>
-      <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="Pause the demo"><i class="ph ph-pause"></i><i class="ph ph-play"></i></button>
-      <div class="flash" id="flash"></div>
-      <div class="note" id="note">File Explorer restarted</div>
-      <div class="toast" id="toast"><div class="disc"><i class="ph ph-list-bullets"></i></div><div><b>Icons put back</b><small id="toast-sub">10 in their saved place, 2 more sorted by name</small></div></div>
+    <div class="stagebox">
+    <div class="stage" id="stage" role="img" aria-label="A demo desktop: File Explorer restarts and the icons scatter, then NJ-Sort glides them back into the saved sort. Pressing Alt and S saves the layout.">
+      <video id="hero" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg" width="1440" height="1080" aria-hidden="true">
+        <source src="hero.mp4" type="video/mp4">
+        <source src="hero.webm" type="video/webm">
+      </video>
+      <img class="still" src="hero-still.jpg" alt="" width="1440" height="1080" loading="lazy" decoding="async">
+    </div>
+      <button class="pause" id="pause" type="button" aria-pressed="false" aria-label="Pause the demo"><svg class="i i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="i i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg></button>
     </div>
   </section>
+  </div>
+
+  <div class="proof"><div class="wrap"><ul>
+    <li>Free<small>No account, no ads</small></li>
+    <li>MIT licence<small>Open source</small></li>
+    <li>About 200 KB<small>One file, no installer</small></li>
+    <li>Windows 10 and 11<small>No admin rights</small></li>
+  </ul></div></div>
 
   <section class="wrap" id="how">
     <h2 class="reveal">Save once. It stays put.</h2>
     <p class="sub reveal">Press <kbd>Alt</kbd> <kbd>S</kbd> to save. Every save goes into the history, so you can go back to any earlier arrangement. Items that aren't in the sort follow it, sorted by name, the way Windows' own Sort by name does.</p>
-    <div class="shot reveal"><img src="window.png" alt="The NJ-Sort window: Save sort now, Rearrange and Undo, the sort history with the active sort, the shortcuts and the behaviour switches" loading="lazy" width="1004" height="859"></div>
+    <div class="shotrow reveal">
+      <div class="shot"><img src="window.png" alt="The NJ-Sort window: Save sort now, Rearrange and Undo, the sort history with the active sort, the shortcuts and the behaviour switches" loading="lazy" width="1004" height="859"></div>
+      <ol class="legend">
+        <li><div><b>Save sort now</b>Saves where every icon is as a new sort, and makes it the active one.</div></li>
+        <li><div><b>Sort history</b>Newest on top, with the active sort marked. Pick one to go back to that point.</div></li>
+        <li><div><b>Shortcuts</b>Click a box and press new keys. Backspace removes one.</div></li>
+      </ol>
+    </div>
   </section>
 
   <section class="wrap" id="features">
@@ -276,7 +169,7 @@
     </div>
     <div class="keys reveal">
       <h3>Shortcuts you can change</h3>
-        <p>They work while NJ-Sort sits in the hidden icons. Click a box in the window and press new keys.</p>
+      <p>They work while NJ-Sort sits in the hidden icons. Click a box in the window and press new keys.</p>
       <div><b>Save sort now</b><kbd>Alt</kbd> <kbd>S</kbd></div>
       <div><b>Rearrange</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>R</kbd></div>
       <div><b>Undo</b><kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Z</kbd></div>
@@ -298,7 +191,7 @@
 <footer>
   <div class="wrap">
     <span>NJ-Sort by Nader Alzghoul. MIT licence.</span>
-    <span>Works well with <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>.</span>
+    <span>Works well with <a href="https://nj-burrito.github.io/NJ-Flush/">NJ-Flush</a>. <a href="ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a></span>
     <div class="seo">
       <span>Also known as NJ Sort, nj-sort, nj_sort. Made by Nader Alzghoul (نادر الزغول), GitHub <a href="https://github.com/NJ-Burrito">NJ-Burrito</a>.</span>
       <h2>More by NJ-Burrito</h2>
@@ -318,51 +211,6 @@
   </div>
 </footer>
 
-<script>
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // The demo: a saved sort (col,row on a 6x4 grid), two new items that follow it by name, then Explorer scatters everything.
-  const desk = document.getElementById('desk'), toast = document.getElementById('toast'), flash = document.getElementById('flash'), note = document.getElementById('note');
-  const saved = [
-    ['Projects', 'folder', 0, 0, '#ffd27a'], ['Clients', 'folder', 0, 1, '#ffd27a'], ['Invoices', 'folder', 0, 2, '#ffd27a'],
-    ['Recycle Bin', 'trash', 0, 3, '#c9ccf0'], ['Notes.txt', 'note-pencil', 1, 0, '#eceeff'], ['Budget.xlsx', 'table', 1, 1, '#9ee6b8'],
-    ['Report.docx', 'file-doc', 1, 2, '#a9c4ff'], ['Photos', 'image', 5, 0, '#f6b3d0'], ['Music', 'music-notes', 5, 1, '#c6b4ff'], ['Terminal', 'terminal-window', 5, 2, '#eceeff']];
-  const extras = [['zebra.png', 'image', '#f6b3d0'], ['agenda.pdf', 'file-pdf', '#ffb4a8']];   // not in the sort: sorted by name into free cells
-  const COLS = 6, ROWS = 4, cw = 100 / COLS, ch = 79 / ROWS;   // the lowest row ends above the toast
-  const taken = new Set(saved.map(s => s[2] * ROWS + s[3])), free = [];
-  for (let c = 0; c < COLS; c++) for (let r = 0; r < ROWS; r++) if (!taken.has(c * ROWS + r)) free.push([c, r]);
-  const items = saved.map(s => ({ name: s[0], icon: s[1], c: s[2], r: s[3], col: s[4] }));
-  extras.slice().sort((a, b) => a[0].localeCompare(b[0])).forEach((e, i) => items.push({ name: e[0], icon: e[1], c: free[i][0], r: free[i][1], col: e[2], isNew: true }));
-  items.forEach(it => {
-    const el = document.createElement('div'); el.className = 'icon' + (it.isNew ? ' new' : '');
-    el.innerHTML = `<div class="glyph" style="--c:${it.col}"><i class="ph ph-${it.icon}"></i></div><span>${it.name}</span>`;
-    desk.insertBefore(el, flash); it.el = el;
-  });
-  const place = (it, x, y) => { it.el.style.transform = `translate(${x * desk.clientWidth / 100}px, ${y * desk.clientHeight / 100}px)`; };
-  const home = it => place(it, it.c * cw + 1, it.r * ch + 2);
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let paused = false;
-  const wait = async ms => { await new Promise(r => setTimeout(r, ms)); while (paused) await new Promise(r => setTimeout(r, 120)); };
-  const pauseBtn = document.getElementById('pause');
-  pauseBtn.addEventListener('click', () => { paused = !paused; pauseBtn.setAttribute('aria-pressed', paused); pauseBtn.setAttribute('aria-label', paused ? 'Play the demo' : 'Pause the demo'); });
-  function scatter() { items.forEach(it => { it.el.style.transitionDelay = '0ms'; place(it, Math.random() * 84, Math.random() * 74); }); }
-  function sortBack() {   // cascade in reading order of the destination: column by column, top to bottom (as the app does)
-    items.slice().sort((a, b) => a.c - b.c || a.r - b.r).forEach((it, k) => { it.el.style.transitionDelay = (reduce ? 0 : k * 16) + 'ms'; home(it); });
-  }
-  async function loop() {
-    items.forEach(it => { it.el.style.transition = 'none'; home(it); }); void desk.offsetWidth; items.forEach(it => it.el.style.transition = '');
-    for (;;) {
-      await wait(1400);
-      note.style.opacity = 1; flash.style.opacity = .85; await wait(300);
-      items.forEach(it => it.el.style.transition = 'none'); scatter(); void desk.offsetWidth; items.forEach(it => it.el.style.transition = '');
-      flash.style.opacity = 0; await wait(1500); note.style.opacity = 0;
-      sortBack(); await wait(320); toast.classList.add('in');
-      await wait(2300); toast.classList.remove('in');
-    }
-  }
-  addEventListener('resize', () => items.forEach(home));
-  if (reduce) { pauseBtn.hidden = true; items.forEach(home); toast.classList.add('in'); } else loop();
-</script>
+<script src="hero.js"></script>
 </body>
 </html>
